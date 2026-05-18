@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Элеонора Шехтерле — Дипломированный тренер и нутрициолог · OnlyFit</title>
+  <meta name="description" content="Элеонора Шехтерле — дипломированный тренер и нутрициолог. В практике с 2018 года. Чемпионка Кемеровской области по фит-модели 2023. Доказательный подход.">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Eleonora page — responsive overrides for inline grids ── */
+
+    /* About section: 1fr 2fr → single column at tablet */
+    @media (max-width: 1024px) {
+      .eleo-about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+      /* Steps: 4 columns → 2×2 at tablet */
+      .eleo-steps-grid { grid-template-columns: 1fr 1fr !important; }
+      .eleo-steps-grid > div:nth-child(2n) { border-right: none !important; }
+      .eleo-steps-grid > div:nth-child(1),
+      .eleo-steps-grid > div:nth-child(2) { border-bottom: 1px solid var(--hairline); }
+    }
+
+    /* Gallery: 4 cols → 2×2 at mobile */
+    @media (max-width: 768px) {
+      .eleo-gallery { grid-template-columns: 1fr 1fr !important; height: auto !important; }
+      .eleo-gallery > div { height: 260px; }
+    }
+
+    /* Small phones */
+    @media (max-width: 480px) {
+      /* Hero stats — tighten gap, shrink numbers slightly */
+      .eleo-hero-stats { gap: 20px !important; }
+      /* Gallery → single column */
+      .eleo-gallery { grid-template-columns: 1fr !important; height: auto !important; }
+      .eleo-gallery > div { height: 300px !important; }
+      /* Steps → single column */
+      .eleo-steps-grid { grid-template-columns: 1fr !important; }
+      .eleo-steps-grid > div { border-right: none !important; border-bottom: 1px solid var(--hairline) !important; }
+      .eleo-steps-grid > div:last-child { border-bottom: none !important; }
+      /* Approach icons → 2 columns */
+      .eleo-approach-icons { grid-template-columns: 1fr 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <!-- Goals -->
+    <g id="icon-fire"><path d="M12 2C9 7 4 10 4 14a8 8 0 0 0 16 0c0-4-5-7-8-12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-muscle"><path d="M18 6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h1l1 4-2 4H6l-2 4h2.5L8 18l2 4h1.5L10 16l2-4 2 4-1.5 6H14l2-4 1.5-2H20l-2-4h-2l-2-4 1-4h1a2 2 0 0 0 2-2v0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-flower"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v5"/><path d="M12 17v5"/><path d="M4.93 4.93l3.54 3.54"/><path d="M15.53 15.53l3.54 3.54"/><path d="M2 12h5"/><path d="M17 12h5"/><path d="M4.93 19.07l3.54-3.54"/><path d="M15.53 8.47l3.54-3.54"/></g></g>
+    <g id="icon-bolt"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Products -->
+    <g id="icon-book"><path d="M4 6h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h16V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v16" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-play"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></g>
+    <g id="icon-chart"><path d="M4 20V10m8 10V4m8 16v-8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-document"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-heart"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-run"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 22l2-7 3 3 3-5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 13l-3 2v3" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-gift"><rect x="3" y="6" width="18" height="5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v15M3 11h18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6H9.5a2.5 2.5 0 0 1 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6h2.5a2.5 2.5 0 0 0 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Services -->
+    <g id="icon-chat"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-rocket"><path d="M12 15l-3-3m3 3a22 22 0 0 1 4-7m-4 7a22 22 0 0 0-4-7m4 7l3-3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-watch"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-layers"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-star"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Trust -->
+    <g id="icon-science"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cert"><path d="M12 2L2 7l10 5 10-5-10-5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-hands"><path d="M7 11V7a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M17 11V7a4 4 0 0 0-4-4v0a4 4 0 0 0-4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-medical"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Security -->
+    <g id="icon-lock"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-infinity"><path d="M9.5 8a5 5 0 1 0 4.96 6M14.5 16a5 5 0 1 0-4.96-6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Misc -->
+    <g id="icon-target"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-clipboard"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 3V1h6v2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6m-6 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-calculator"><rect x="3" y="2" width="18" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h10M7 12h4m3 0h4m-11 4h4m3 0h4m-11 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-brain"><path d="M12 2A4 4 0 0 0 8 6c0 2 2 3 2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 11A5 5 0 0 0 3 15v2a2 2 0 0 0 2 2h1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 11a5 5 0 0 1 5 4v2a2 2 0 0 1-2 2h-1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v8" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-droplet"><path d="M12 2L6 12a6 6 0 0 0 12 0L12 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-printer"><rect x="6" y="8" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 12H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4V2h8v2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-warning"><path d="M12 2L2 22h20L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10v4m0 4h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-globe"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cycle"><path d="M1 4v6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 15a9 9 0 1 0 2.2-9.7L1 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-utensils"><circle cx="7" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11v11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 3v18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 3h6v4a3 3 0 0 1-3 3v0a3 3 0 0 1-3-3V3z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-check-circle"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-check"><path d="M5 12l4 4L19 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-close"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Social -->
+    <g id="icon-telegram"><path d="M21.5 3.5 2 11l7.5 2.5L13 21Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="1" fill="currentColor"/></g>
+    <g id="icon-youtube"><path d="M22.5 7.5a2.5 2.5 0 0 0-2.5-2.5H4A2.5 2.5 0 0 0 1.5 7.5v9A2.5 2.5 0 0 0 4 19h16a2.5 2.5 0 0 0 2.5-2.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="currentColor"/></g>
+    <g id="icon-vk"><path d="M21.5 2.5h-19v19h19v-19Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 16c-4 0-6-3-6-6s2-6 6-6 6 3 6 6-2 6-6 6Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">B</text></g>
+
+    <!-- Arrow -->
+    <g id="icon-arrow-right"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </defs>
+</svg>
+
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <a href="calculator.html">Калькулятор КБЖУ</a>
+  <a href="test-rpp.html">Тест РПП</a>
+  <a href="https://t.me/eleonora_onlyfit" target="_blank">Telegram Элеоноры</a>
+  <a href="#">Instagram</a>
+</div>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav">
+  <a href="../index.html" class="nav-logo">ONLYFIT</a>
+  <div class="nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html" class="active">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#services" class="btn btn-primary btn-sm">Записаться</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-nav-overlay">
+  <span class="mobile-nav-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;flex-shrink:0"><use href="#icon-close"/></svg></span>
+  <div class="mobile-nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+</div>
+
+<!-- TRAINER HERO -->
+<div class="trainer-hero">
+  <div class="trainer-hero-content">
+    <div style="color:var(--accent-teal);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px">
+      Главный тренер · OnlyFit
+    </div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(56px,7vw,96px);line-height:0.9;text-transform:uppercase;color:var(--canvas);margin-bottom:24px">
+      ЭЛЕОНОРА<br>ШЕХТЕРЛЕ
+    </h1>
+    <p style="font-size:18px;color:rgba(255,255,255,0.7);line-height:1.6;max-width:460px;margin-bottom:32px">
+      Дипломированный тренер и нутрициолог. С 2018 года помогаю выстраивать здоровые отношения с едой и телом — без самоистязания, с опорой на науку.
+    </p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px">
+      <span class="label-tag teal">Нутрициология</span>
+      <span class="label-tag teal">Функциональный фитнес</span>
+      <span class="label-tag teal">РПП</span>
+      <span class="label-tag teal">Body Neutrality</span>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#services" class="btn btn-primary btn-lg">Записаться на консультацию</a>
+      <a href="#about" class="btn btn-outline-white btn-lg">Узнать больше</a>
+    </div>
+    <div class="eleo-hero-stats" style="display:grid;grid-template-columns:repeat(3,auto);gap:40px;margin-top:48px">
+      <div>
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--canvas);line-height:1">500+</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px">клиентов</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--canvas);line-height:1">8</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px">лет опыта</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--canvas);line-height:1">4.9★</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px">рейтинг</div>
+      </div>
+    </div>
+  </div>
+  <div class="trainer-hero-visual" style="padding:0">
+    <img src="../materials_photo/IMG_7136.JPG" alt="Элеонора Шехтерле"
+      style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section-lg" id="about" style="background:var(--canvas)">
+  <div class="container">
+    <div class="eleo-about-grid" style="display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start">
+      <div>
+        <div class="overline mb-lg">Об эксперте</div>
+        <h2 style="font-family:var(--font-display);font-size:56px;line-height:0.9;text-transform:uppercase;margin-bottom:var(--space-section)">МОЙ<br>ПОДХОД</h2>
+        <div class="cert-list">
+          <div class="cert-item">
+            <div class="cert-year">2014</div>
+            <div><div class="cert-name">Диплом нутрициолога</div><div class="cert-org">Российский университет медицины</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2016</div>
+            <div><div class="cert-name">NSCA-CPT</div><div class="cert-org">National Strength and Conditioning Association</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2019</div>
+            <div><div class="cert-name">Специалист по РПП</div><div class="cert-org">Институт психологии питания (IPE)</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2021</div>
+            <div><div class="cert-name">Sports Nutrition Specialist</div><div class="cert-org">International Society of Sports Nutrition</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2022</div>
+            <div><div class="cert-name">Certified Intuitive Eating Counselor</div><div class="cert-org">Tribole &amp; Resch Institute</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2024</div>
+            <div><div class="cert-name">Behaviour Change Specialist</div><div class="cert-org">Precision Nutrition PN2</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:20px;font-weight:500;line-height:1.6;color:var(--ink);margin-bottom:var(--space-xl)">
+          «Моя работа — не давать вам идеальный план питания. Моя работа — помочь вам найти план, который вы сможете соблюдать в реальной жизни: когда устали, когда срыв, когда праздники.»
+        </p>
+        <p style="font-size:16px;line-height:1.7;color:var(--charcoal);margin-bottom:var(--space-xl)">
+          Мой путь в фитнесе начался с личного опыта: восстановление после родов, −20 кг, полная перестройка отношений с телом. С 2018 года я в профессии — сначала как тренер, затем как нутрициолог.
+        </p>
+        <p style="font-size:16px;line-height:1.7;color:var(--charcoal);margin-bottom:var(--space-xl)">
+          Спортивные достижения: чемпионка Кемеровской области в категории «фит-модель» 2023 года, двукратная вице-чемпионка Томской области (2023, 2024). Эти результаты — не про «идеальное тело», а про дисциплину, системность и уважение к своему организму.
+        </p>
+        <p style="font-size:16px;line-height:1.7;color:var(--charcoal);margin-bottom:var(--space-xl)">
+          Body Neutrality — фундамент моей практики. Цель — не тело определённого размера, а здоровье, энергия и свобода от тревоги вокруг еды. Я работала с клиентами от 16 до 68 лет — с разными целями, историями и отношениями с телом.
+        </p>
+        <p style="font-size:16px;line-height:1.7;color:var(--charcoal);margin-bottom:var(--space-section)">
+          Отдельное направление — работа с расстройствами пищевого поведения в тесном сотрудничестве с психологами и врачами. Для меня это не просто специализация — это самый важный труд в моей карьере.
+        </p>
+        <div class="eleo-approach-icons" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-lg)">
+          <div style="text-align:center;padding:24px;border:1px solid var(--hairline)">
+            <div style="width:32px;height:32px;margin-bottom:8px;color:var(--canvas)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-science"/></svg></div>
+            <div style="font-size:13px;font-weight:600">Наука первична</div>
+          </div>
+          <div style="text-align:center;padding:24px;border:1px solid var(--hairline)">
+            <div style="width:32px;height:32px;margin-bottom:8px;color:var(--canvas)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-hands"/></svg></div>
+            <div style="font-size:13px;font-weight:600">Без стыда</div>
+          </div>
+          <div style="text-align:center;padding:24px;border:1px solid var(--hairline)">
+            <div style="width:32px;height:32px;margin-bottom:8px;color:var(--canvas)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-target"/></svg></div>
+            <div style="font-size:13px;font-weight:600">Практичность</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section style="background:var(--ink);overflow:hidden">
+  <div class="eleo-gallery" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;height:520px">
+    <div style="overflow:hidden;position:relative">
+      <img src="../materials_photo/IMG_7138.JPG" alt="Элеонора Шехтерле"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 50%;transition:transform 0.5s ease"
+        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    </div>
+    <div style="overflow:hidden;position:relative">
+      <img src="../materials_photo/IMG_7141.JPG" alt="Элеонора Шехтерле"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 50%;transition:transform 0.5s ease"
+        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    </div>
+    <div style="overflow:hidden;position:relative">
+      <img src="../materials_photo/IMG_7139.JPG" alt="Элеонора Шехтерле"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 50%;transition:transform 0.5s ease"
+        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    </div>
+    <div style="overflow:hidden;position:relative;background:linear-gradient(160deg,#0a1a1a,#0a2a1a)">
+      <img src="../materials_photo/IMG_7147.JPG" alt="Элеонора Шехтерле — соревнования"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 35%;transition:transform 0.5s ease;filter:saturate(1.1)"
+        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <div style="position:absolute;bottom:16px;left:16px;background:rgba(0,0,0,0.6);color:white;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px">
+        Спортивные достижения
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section-lg" id="services" style="background:var(--soft-cloud)">
+  <div class="container">
+    <div class="overline mb-md">Работа с Элеонорой</div>
+    <h2 class="heading-xl mb-section">УСЛУГИ<br>&amp; ЦЕНЫ</h2>
+    <div class="services-grid">
+
+      <!-- Консультация -->
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-chat"/></svg></div>
+        <div style="margin-bottom:8px"><span class="label-tag">Разовая консультация</span></div>
+        <div class="service-title">Первичная консультация</div>
+        <div class="service-desc">60 минут онлайн. Разбор вашей цели, питания, образа жизни и ключевых барьеров. Получите конкретный план следующих шагов.</div>
+        <div class="service-price">4 500 ₽ <span>/ 60 мин</span></div>
+        <ul class="service-features">
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Анализ текущего рациона</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Определение цели и стратегии</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Персональные рекомендации</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Запись консультации</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline w-full" style="justify-content:center">Записаться</a>
+      </div>
+
+      <!-- Коучинг - featured -->
+      <div class="service-card featured">
+        <div style="position:absolute;top:24px;right:24px;background:var(--accent-teal);color:white;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:9999px">Популярное</div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-rocket"/></svg></div>
+        <div style="margin-bottom:8px"><span class="service-tag label-tag">3 месяца сопровождения</span></div>
+        <div class="service-title">Онлайн-коучинг</div>
+        <div class="service-desc">Полное персональное сопровождение на 3 месяца: питание, тренировки, поведение, поддержка после срывов.</div>
+        <div class="service-price">24 000 ₽ <span>/ 3 месяца</span></div>
+        <ul class="service-features">
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Еженедельные видеозвонки (4×)</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Персональный план питания</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Программа тренировок</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Чат-поддержка 7 дней в неделю</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Корректировки по результатам</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Работа с пищевым поведением</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary w-full" style="justify-content:center;background:var(--canvas);color:var(--ink)">Записаться</a>
+      </div>
+
+      <!-- РПП -->
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-brain"/></svg></div>
+        <div style="margin-bottom:8px"><span class="label-tag success">Специализация</span></div>
+        <div class="service-title">Работа с РПП</div>
+        <div class="service-desc">Совместная работа с психологом. Нутрициологическое сопровождение при расстройствах пищевого поведения — эмоциональное питание, компульсивное переедание, ограничительное поведение.</div>
+        <div class="service-price">6 000 ₽ <span>/ сессия</span></div>
+        <ul class="service-features">
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Без давления и осуждения</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Координация с психологом</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Недиетический подход</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Постепенная нормализация питания</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline w-full" style="justify-content:center">Записаться</a>
+      </div>
+
+      <!-- 21-дней -->
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-calendar"/></svg></div>
+        <div style="margin-bottom:8px"><span class="label-tag">Групповая программа</span></div>
+        <div class="service-title">21-дневный челлендж</div>
+        <div class="service-desc">Интенсивная групповая программа для тех, кто хочет сформировать устойчивые привычки питания за три недели.</div>
+        <div class="service-price">5 900 ₽ <span>/ 21 день</span></div>
+        <ul class="service-features">
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Ежедневные задания в Telegram</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Группа участников</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Еженедельный эфир с Элеонорой</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Меню и рецепты</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline w-full" style="justify-content:center">Записаться</a>
+      </div>
+
+      <!-- Анализ рациона -->
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-chart"/></svg></div>
+        <div style="margin-bottom:8px"><span class="label-tag">Аудит</span></div>
+        <div class="service-title">Анализ рациона</div>
+        <div class="service-desc">Разбор вашего питания за 7 дней. Письменный отчёт с конкретными рекомендациями — без звонка, в удобное время.</div>
+        <div class="service-price">2 900 ₽</div>
+        <ul class="service-features">
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Анализ дневника питания (7 дней)</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Оценка макро и микронутриентов</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Список корректировок</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Срок: 48 часов</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline w-full" style="justify-content:center">Заказать</a>
+      </div>
+
+      <!-- VIP -->
+      <div class="service-card" style="border:1.5px solid var(--ink)">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-star"/></svg></div>
+        <div style="margin-bottom:8px"><span class="label-tag">Премиум</span></div>
+        <div class="service-title">VIP-сопровождение</div>
+        <div class="service-desc">Максимальный формат работы: ежедневный доступ к Элеоноре, быстрые ответы, гибкое планирование. Для тех, кто хочет лучшего результата в кратчайшие сроки.</div>
+        <div class="service-price">15 000 ₽ <span>/ месяц</span></div>
+        <ul class="service-features">
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Безлимитный чат</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> 4 видеозвонка в месяц</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Ответ в течение 2 часов</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Корректировки ежедневно</li>
+          <li><span class="service-check" style="width:16px;height:16px;display:inline-flex;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Приоритетная запись</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary w-full" style="justify-content:center">Записаться</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-lg" style="background:var(--canvas)">
+  <div class="container">
+    <div class="overline mb-md text-center">Процесс работы</div>
+    <h2 class="heading-xl text-center mb-section">КАК МЫ<br>РАБОТАЕМ</h2>
+    <div class="eleo-steps-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--hairline)">
+      <div style="padding:40px 32px;border-right:1px solid var(--hairline)">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--soft-cloud);line-height:1;margin-bottom:16px">01</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:12px">Знакомство</div>
+        <div style="font-size:14px;color:var(--mute);line-height:1.7">Заполняете анкету. Я изучаю вашу цель, историю и образ жизни до нашей встречи.</div>
+      </div>
+      <div style="padding:40px 32px;border-right:1px solid var(--hairline)">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--soft-cloud);line-height:1;margin-bottom:16px">02</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:12px">Первая консультация</div>
+        <div style="font-size:14px;color:var(--mute);line-height:1.7">Разбираем запрос, договариваемся о подходе, ставим реалистичные цели.</div>
+      </div>
+      <div style="padding:40px 32px;border-right:1px solid var(--hairline)">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--soft-cloud);line-height:1;margin-bottom:16px">03</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:12px">Персональный план</div>
+        <div style="font-size:14px;color:var(--mute);line-height:1.7">Получаете план питания и тренировок, адаптированный под вашу жизнь — не под идеальные условия.</div>
+      </div>
+      <div style="padding:40px 32px">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--soft-cloud);line-height:1;margin-bottom:16px">04</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:12px">Поддержка и рост</div>
+        <div style="font-size:14px;color:var(--mute);line-height:1.7">Регулярные встречи, корректировки плана, помощь после срывов. Работаем до результата.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-lg" style="background:var(--ink)">
+  <div class="container">
+    <div class="overline mb-md" style="color:rgba(255,255,255,0.4)">Клиенты об Элеоноре</div>
+    <h2 class="heading-xl mb-section" style="color:var(--canvas)">РЕЗУЛЬТАТЫ</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1)">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" style="color:rgba(255,255,255,0.8)">
+          "Работала с Элеонорой 4 месяца. Минус 8 кг — и это не главное достижение. Главное — я перестала бояться еды и срывов. Впервые за 10 лет у меня нормальные отношения с питанием."
+        </p>
+        <div class="testimonial-meta">
+          <div class="testimonial-avatar" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5)">АК</div>
+          <div>
+            <div class="testimonial-name" style="color:var(--canvas)">Анна К., 34 года</div>
+            <div class="testimonial-detail">Онлайн-коучинг, 4 месяца · −8 кг</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1)">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" style="color:rgba(255,255,255,0.8)">
+          "Пришла с компульсивным перееданием. Элеонора не пыталась сразу ограничить калории — она помогла понять триггеры. Через 5 месяцев приступы стали редкими, а не ежедневными."
+        </p>
+        <div class="testimonial-meta">
+          <div class="testimonial-avatar" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5)">НР</div>
+          <div>
+            <div class="testimonial-name" style="color:var(--canvas)">Наташа Р., 29 лет</div>
+            <div class="testimonial-detail">Работа с РПП, 5 месяцев</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1)">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" style="color:rgba(255,255,255,0.8)">
+          "Я бухгалтер — сидячая работа, нет времени. Элеонора составила план, который реально вписывается в мой день. За 3 месяца −5 кг и значительно лучше сплю."
+        </p>
+        <div class="testimonial-meta">
+          <div class="testimonial-avatar" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5)">ИС</div>
+          <div>
+            <div class="testimonial-name" style="color:var(--canvas)">Ирина С., 41 год</div>
+            <div class="testimonial-detail">Онлайн-коучинг, 3 месяца · −5 кг</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-lg" style="background:var(--canvas)">
+  <div class="container-sm">
+    <div class="overline mb-md">Частые вопросы</div>
+    <h2 class="heading-xl mb-section">FAQ</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Работаете ли вы онлайн?
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="faq-answer">
+        Да, 100% работы — онлайн. Это позволяет работать с клиентами из любой точки мира. Консультации проходят в Zoom или Google Meet.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Как быстро можно ожидать результат?
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="faq-answer">
+        Честный ответ: устойчивые изменения требуют времени. Большинство клиентов замечают значимые результаты к 6–8 неделям. Я не обещаю быстрых чудес, потому что быстрые результаты обычно не держатся.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Нужно ли считать калории?
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="faq-answer">
+        Не обязательно. Подход выбирается индивидуально. Для некоторых людей трекинг помогает — для других, особенно с историей РПП, он вреден. Мы договариваемся о подходе, который подходит именно вам.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Работаете ли вы с расстройствами пищевого поведения?
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="faq-answer">
+        Да, это одна из ключевых специализаций. При серьёзных диагнозах (анорексия, булимия) я работаю в координации с психологом и психиатром — это мультидисциплинарный подход, который показывает лучшие результаты. Карина Александрова из нашей команды занимается психологической составляющей.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Возможен ли возврат средств?
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="faq-answer">
+        По разовым консультациям возврат возможен за 48 часов до встречи. Программы коучинга при отмене в первые 7 дней возвращаются полностью, далее — пропорционально оставшимся неделям.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Нужно ли сдавать анализы?
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="faq-answer">
+        Я не назначаю анализы — это задача врача. Если у вас есть результаты (общий анализ крови, биохимия, гормоны), я помогу учесть их в плане питания. При необходимости направлю к нужному специалисту.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="section-lg" id="contact" style="background:var(--soft-cloud)">
+  <div class="container-sm">
+    <div class="overline mb-md">Первый шаг</div>
+    <h2 class="heading-xl mb-xl">ЗАПИСАТЬСЯ</h2>
+    <p style="font-size:16px;color:var(--mute);margin-bottom:var(--space-section);line-height:1.7">
+      Заполните форму — Элеонора свяжется в течение 24 часов и ответит на вопросы перед записью.
+    </p>
+
+    <form id="contactForm" style="display:flex;flex-direction:column;gap:var(--space-xl)">
+      <div class="form-row">
+        <div class="form-group" style="margin:0">
+          <label class="form-label" for="name">Имя</label>
+          <input type="text" id="name" class="form-input" placeholder="Ваше имя" required>
+        </div>
+        <div class="form-group" style="margin:0">
+          <label class="form-label" for="age">Возраст</label>
+          <input type="number" id="age" class="form-input" placeholder="Ваш возраст" min="14" max="80">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="email@example.com" required>
+        </div>
+        <div class="form-group" style="margin:0">
+          <label class="form-label" for="telegram">Telegram (необязательно)</label>
+          <input type="text" id="telegram" class="form-input" placeholder="@username">
+        </div>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" for="service">Интересующая услуга</label>
+        <select id="service" class="form-select">
+          <option value="">Выберите формат работы</option>
+          <option>Первичная консультация (4 500 ₽)</option>
+          <option>Онлайн-коучинг 3 месяца (24 000 ₽)</option>
+          <option>Работа с РПП (6 000 ₽/сессия)</option>
+          <option>21-дневный челлендж (5 900 ₽)</option>
+          <option>Анализ рациона (2 900 ₽)</option>
+          <option>VIP-сопровождение (15 000 ₽/мес)</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" for="goal">Ваш запрос</label>
+        <textarea id="goal" class="form-input" rows="4" style="height:auto;padding:14px 18px;resize:vertical" placeholder="Коротко опишите свою цель и что важно учесть"></textarea>
+      </div>
+      <div style="font-size:13px;color:var(--mute);line-height:1.6">
+        Отправляя форму, вы соглашаетесь с <a href="#" style="text-decoration:underline">политикой конфиденциальности</a>. Данные используются только для связи с вами.
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg w-full" style="justify-content:center">
+        Отправить заявку
+      </button>
+    </form>
+
+    <div id="formSuccess" style="display:none;background:var(--success);color:white;padding:var(--space-xl);margin-top:var(--space-xl)">
+      <strong style="display:block;margin-bottom:8px">Заявка отправлена!</strong>
+      Элеонора свяжется с вами в течение 24 часов. Проверьте email или Telegram.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">ONLYFIT</div>
+        <p class="footer-tagline">Доказательный фитнес и нутрициология без стыда.</p>
+      </div>
+      <div><div class="footer-col-title">Тренеры</div><div class="footer-links">
+        <a href="eleonora.html">Элеонора Шехтерле</a>
+        <a href="trainers.html#maria">Мария Соколова</a>
+        <a href="trainers.html#dmitry">Дмитрий Волков</a>
+        <a href="trainers.html#karina">Карина Александрова</a>
+      </div></div>
+      <div><div class="footer-col-title">Инструменты</div><div class="footer-links">
+        <a href="calculator.html">Калькулятор КБЖУ</a>
+        <a href="test-rpp.html">Тест РПП</a>
+      </div></div>
+      <div><div class="footer-col-title">Продукты</div><div class="footer-links">
+        <a href="products.html">Все продукты</a>
+      </div></div>
+      <div><div class="footer-col-title">Компания</div><div class="footer-links">
+        <a href="#">О нас</a><a href="#">Контакты</a><a href="#">Дисклеймер</a>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 OnlyFit. Материалы сайта не заменяют консультацию врача.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Условия использования</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+</script>
+</body>
+</html>

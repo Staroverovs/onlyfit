@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог — OnlyFit</title>
+  <meta name="description" content="Экспертные статьи о питании, тренировках и психологии пищевого поведения. Доказательный подход без мифов и стыда.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <a href="calculator.html">Калькулятор КБЖУ</a>
+  <a href="test-rpp.html">Тест РПП</a>
+  <a href="https://t.me/onlyfit" target="_blank">Telegram</a>
+  <a href="#">Instagram</a>
+</div>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav">
+  <a href="../index.html" class="nav-logo">ONLYFIT</a>
+  <div class="nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html" class="active">Блог</a>
+  </div>
+  <div class="nav-cta">
+    <a href="eleonora.html#services" class="btn btn-primary btn-sm">Записаться</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-nav-overlay">
+  <span class="mobile-nav-close">✕</span>
+  <div class="mobile-nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.5)">Блог</span>
+    </div>
+    <div class="page-header-eyebrow">Экспертный контент</div>
+    <h1 class="page-header-title">БЛОГ</h1>
+    <p class="page-header-sub">Статьи о питании, тренировках и психологии — без мифов, без стыда, с доказательной базой.</p>
+  </div>
+</div>
+
+<!-- BLOG CONTENT -->
+<section class="section-lg">
+  <div class="container">
+
+    <!-- Category filter chips -->
+    <div class="filter-chips" id="blogFilters">
+      <button class="chip active" data-cat="all">Все статьи</button>
+      <button class="chip" data-cat="nutrition">Нутрициология</button>
+      <button class="chip" data-cat="psychology">Психология</button>
+      <button class="chip" data-cat="fitness">Фитнес</button>
+      <button class="chip" data-cat="women">Женское здоровье</button>
+    </div>
+
+    <!-- Featured article -->
+    <a href="blog/deficit-kalorii.html" class="blog-featured" data-cat="nutrition">
+      <div class="blog-featured-cover">
+        <img src="../materials_photo/IMG_7143.JPG" alt="Как дефицит калорий работает на самом деле">
+      </div>
+      <div class="blog-featured-body">
+        <div class="blog-featured-eyebrow">Рекомендуем прочитать</div>
+        <span class="blog-category cat-nutrition mb-lg" style="margin-bottom:var(--space-lg)">Нутрициология</span>
+        <div class="blog-featured-title">Как дефицит калорий работает на самом деле</div>
+        <p class="blog-featured-excerpt">Все говорят «ешь меньше — худей». Но что происходит в организме, когда калорий не хватает? Почему тело сопротивляется похудению, и как создать дефицит, который не уничтожит мышцы и метаболизм.</p>
+        <div class="blog-card-meta" style="border-top:1px solid var(--hairline-soft);padding-top:var(--space-lg)">
+          <div class="blog-author-avatar">
+            <img src="../materials_photo/IMG_7136.JPG" alt="Элеонора Шехтерле">
+          </div>
+          <div class="blog-meta-text">
+            <div class="blog-meta-author">Элеонора Шехтерле</div>
+            <div class="blog-meta-date">15 апреля 2025</div>
+          </div>
+          <span class="blog-meta-read">8 мин</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Blog grid -->
+    <div class="blog-grid" id="blogGrid">
+
+      <!-- Article 2 -->
+      <a href="blog/chto-takoe-rpp.html" class="blog-card" data-cat="psychology">
+        <div class="blog-card-cover">
+          <div class="blog-card-cover-placeholder" style="background:linear-gradient(135deg,#fde8f3,#f9d0eb)">🧠</div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category cat-psychology">Психология</span>
+          <div class="blog-card-title">Что такое РПП и как его распознать у себя</div>
+          <p class="blog-card-excerpt">Расстройства пищевого поведения — не диета и не слабость воли. Рассказываю, какие сигналы указывают на то, что пора обратиться за поддержкой.</p>
+          <div class="blog-card-meta">
+            <div class="blog-author-avatar-initial" style="background:#fde8f3;color:#b5157a">КА</div>
+            <div class="blog-meta-text">
+              <div class="blog-meta-author">Карина Александрова</div>
+              <div class="blog-meta-date">2 марта 2025</div>
+            </div>
+            <span class="blog-meta-read">10 мин</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article 3 -->
+      <a href="blog/silovye-trenirovki.html" class="blog-card" data-cat="fitness">
+        <div class="blog-card-cover">
+          <div class="blog-card-cover-placeholder" style="background:linear-gradient(135deg,#e8e8e8,#d0d0d0)">💪</div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category cat-fitness">Фитнес</span>
+          <div class="blog-card-title">Силовые тренировки для начинающих: мифы и факты</div>
+          <p class="blog-card-excerpt">«Буду качаться — стану некрасивой», «нужно сначала похудеть», «тренажёры только для профи» — разбираю 7 мифов, которые мешают начать тренироваться.</p>
+          <div class="blog-card-meta">
+            <div class="blog-author-avatar-initial" style="background:#e8e8e8;color:#333">ДВ</div>
+            <div class="blog-meta-text">
+              <div class="blog-meta-author">Дмитрий Волков</div>
+              <div class="blog-meta-date">18 февраля 2025</div>
+            </div>
+            <span class="blog-meta-read">7 мин</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article 4 -->
+      <a href="blog/pitanie-tsikl.html" class="blog-card" data-cat="women">
+        <div class="blog-card-cover">
+          <div class="blog-card-cover-placeholder" style="background:linear-gradient(135deg,#fef3e2,#fde8c6)">🌸</div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category cat-women">Женское здоровье</span>
+          <div class="blog-card-title">Питание во время менструального цикла</div>
+          <p class="blog-card-excerpt">В разные фазы цикла организму нужно разное. Как скорректировать питание, чтобы снизить симптомы ПМС, поддержать энергию и не срываться на сладкое.</p>
+          <div class="blog-card-meta">
+            <div class="blog-author-avatar-initial" style="background:#fef3e2;color:#92400e">МС</div>
+            <div class="blog-meta-text">
+              <div class="blog-meta-author">Мария Соколова</div>
+              <div class="blog-meta-date">5 января 2025</div>
+            </div>
+            <span class="blog-meta-read">9 мин</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article 5 -->
+      <a href="blog/sryvy-normalno.html" class="blog-card" data-cat="psychology">
+        <div class="blog-card-cover">
+          <img src="../materials_photo/IMG_7144.JPG" alt="Почему срывы — это нормально">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category cat-psychology">Психология питания</span>
+          <div class="blog-card-title">Почему срывы — это нормально</div>
+          <p class="blog-card-excerpt">Съела тортик — значит всё провалилось? Нет. Срывы — часть процесса, а не конец пути. Объясняю, почему чёрно-белое мышление мешает прогрессу.</p>
+          <div class="blog-card-meta">
+            <div class="blog-author-avatar">
+              <img src="../materials_photo/IMG_7136.JPG" alt="Элеонора Шехтерле">
+            </div>
+            <div class="blog-meta-text">
+              <div class="blog-meta-author">Элеонора Шехтерле</div>
+              <div class="blog-meta-date">20 ноября 2024</div>
+            </div>
+            <span class="blog-meta-read">6 мин</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article 6 -->
+      <a href="blog/kbzhu-schitat.html" class="blog-card" data-cat="nutrition">
+        <div class="blog-card-cover">
+          <img src="../materials_photo/IMG_7140.JPG" alt="КБЖУ: нужно ли считать каждый грамм">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category cat-nutrition">Нутрициология</span>
+          <div class="blog-card-title">КБЖУ: нужно ли считать каждый грамм?</div>
+          <p class="blog-card-excerpt">Подсчёт калорий — инструмент, а не тюрьма. Рассказываю, кому это полезно, кому вредно, и какие альтернативы работают не хуже.</p>
+          <div class="blog-card-meta">
+            <div class="blog-author-avatar">
+              <img src="../materials_photo/IMG_7136.JPG" alt="Элеонора Шехтерле">
+            </div>
+            <div class="blog-meta-text">
+              <div class="blog-meta-author">Элеонора Шехтерле</div>
+              <div class="blog-meta-date">8 октября 2024</div>
+            </div>
+            <span class="blog-meta-read">11 мин</span>
+          </div>
+        </div>
+      </a>
+
+    </div><!-- /blog-grid -->
+
+    <!-- Authors section -->
+    <div class="section-divider" style="height:1px;background:var(--hairline-soft);margin:80px 0 64px"></div>
+    <div class="overline mb-section">Авторы блога</div>
+    <div class="grid-3 mb-section" style="gap:var(--space-xl)">
+      <a href="blog/author-eleonora.html" style="display:flex;align-items:center;gap:var(--space-lg);padding:var(--space-xl);border:1.5px solid var(--hairline-soft);transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--hairline-soft)'">
+        <div style="width:64px;height:64px;border-radius:9999px;overflow:hidden;flex-shrink:0">
+          <img src="../materials_photo/IMG_7136.JPG" alt="Элеонора Шехтерле" style="width:100%;height:100%;object-fit:cover;object-position:top center">
+        </div>
+        <div>
+          <div style="font-weight:700;margin-bottom:4px">Элеонора Шехтерле</div>
+          <div style="font-size:13px;color:var(--mute)">Нутрициолог · 3 статьи</div>
+        </div>
+      </a>
+      <a href="blog/author-karina.html" style="display:flex;align-items:center;gap:var(--space-lg);padding:var(--space-xl);border:1.5px solid var(--hairline-soft);transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--hairline-soft)'">
+        <div style="width:64px;height:64px;border-radius:9999px;background:#fde8f3;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:#b5157a;flex-shrink:0">КА</div>
+        <div>
+          <div style="font-weight:700;margin-bottom:4px">Карина Александрова</div>
+          <div style="font-size:13px;color:var(--mute)">Психолог · 1 статья</div>
+        </div>
+      </a>
+      <a href="blog/author-dmitry.html" style="display:flex;align-items:center;gap:var(--space-lg);padding:var(--space-xl);border:1.5px solid var(--hairline-soft);transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--hairline-soft)'">
+        <div style="width:64px;height:64px;border-radius:9999px;background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:#333;flex-shrink:0">ДВ</div>
+        <div>
+          <div style="font-weight:700;margin-bottom:4px">Дмитрий Волков</div>
+          <div style="font-size:13px;color:var(--mute)">Тренер · 1 статья</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">ONLYFIT</div>
+        <p class="footer-tagline">Доказательный фитнес и нутрициология без стыда, обещаний чудес и диетической культуры.</p>
+        <div class="footer-social">
+          <a href="https://t.me/onlyfit" target="_blank" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8-1.7 8.02c-.12.56-.46.7-.93.43l-2.58-1.9-1.24 1.2c-.14.13-.25.25-.52.25l.18-2.63 4.73-4.27c.21-.18-.05-.28-.32-.1L7.8 14.73l-2.54-.79c-.55-.17-.56-.55.12-.82l9.88-3.81c.46-.17.86.11.38.49z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Тренеры</div>
+        <div class="footer-links">
+          <a href="eleonora.html">Элеонора Шехтерле</a>
+          <a href="trainers.html">Вся команда</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Продукты</div>
+        <div class="footer-links">
+          <a href="products.html">Все программы</a>
+          <a href="products.html">Гайды PDF</a>
+          <a href="products.html">Видео-курсы</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Инструменты</div>
+        <div class="footer-links">
+          <a href="calculator.html">Калькулятор КБЖУ</a>
+          <a href="test-rpp.html">Тест РПП</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 OnlyFit. Все права защищены.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Оферта</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  // Blog category filter
+  const chips = document.querySelectorAll('#blogFilters .chip');
+  const cards = document.querySelectorAll('#blogGrid .blog-card');
+  const featured = document.querySelector('.blog-featured');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const cat = chip.dataset.cat;
+      cards.forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+      });
+      if (featured) {
+        featured.style.display = (cat === 'all' || featured.dataset.cat === cat) ? 'grid' : 'none';
+      }
+    });
+  });
+</script>
+</body>
+</html>

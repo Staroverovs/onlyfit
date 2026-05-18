@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Команда тренеров — OnlyFit</title>
+  <meta name="description" content="Команда сертифицированных тренеров и нутрициологов OnlyFit. Индивидуальные услуги, доказательный подход.">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── trainers.html responsive ── */
+    @media (max-width: 768px) {
+      /* Main trainer two-column layouts → stack */
+      #eleonora,
+      .trainer-layout { grid-template-columns: 1fr !important; gap: 40px !important; }
+    }
+    @media (max-width: 480px) {
+      /* 3-col stat boxes → 2 col */
+      .trainer-3col { grid-template-columns: 1fr 1fr !important; }
+      /* 2-col service cards → single column */
+      .trainer-2col { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <!-- Goals -->
+    <g id="icon-fire"><path d="M12 2C9 7 4 10 4 14a8 8 0 0 0 16 0c0-4-5-7-8-12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-muscle"><path d="M18 6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h1l1 4-2 4H6l-2 4h2.5L8 18l2 4h1.5L10 16l2-4 2 4-1.5 6H14l2-4 1.5-2H20l-2-4h-2l-2-4 1-4h1a2 2 0 0 0 2-2v0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-flower"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v5"/><path d="M12 17v5"/><path d="M4.93 4.93l3.54 3.54"/><path d="M15.53 15.53l3.54 3.54"/><path d="M2 12h5"/><path d="M17 12h5"/><path d="M4.93 19.07l3.54-3.54"/><path d="M15.53 8.47l3.54-3.54"/></g></g>
+    <g id="icon-bolt"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Products -->
+    <g id="icon-book"><path d="M4 6h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h16V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v16" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-play"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></g>
+    <g id="icon-chart"><path d="M4 20V10m8 10V4m8 16v-8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-document"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-heart"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-run"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 22l2-7 3 3 3-5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 13l-3 2v3" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-gift"><rect x="3" y="6" width="18" height="5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v15M3 11h18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6H9.5a2.5 2.5 0 0 1 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6h2.5a2.5 2.5 0 0 0 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Services -->
+    <g id="icon-chat"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-rocket"><path d="M12 15l-3-3m3 3a22 22 0 0 1 4-7m-4 7a22 22 0 0 0-4-7m4 7l3-3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-watch"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-layers"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-star"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Trust -->
+    <g id="icon-science"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cert"><path d="M12 2L2 7l10 5 10-5-10-5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-hands"><path d="M7 11V7a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M17 11V7a4 4 0 0 0-4-4v0a4 4 0 0 0-4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-medical"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Security -->
+    <g id="icon-lock"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-infinity"><path d="M9.5 8a5 5 0 1 0 4.96 6M14.5 16a5 5 0 1 0-4.96-6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Misc -->
+    <g id="icon-target"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-clipboard"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 3V1h6v2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6m-6 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-calculator"><rect x="3" y="2" width="18" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h10M7 12h4m3 0h4m-11 4h4m3 0h4m-11 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-brain"><path d="M12 2A4 4 0 0 0 8 6c0 2 2 3 2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 11A5 5 0 0 0 3 15v2a2 2 0 0 0 2 2h1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 11a5 5 0 0 1 5 4v2a2 2 0 0 1-2 2h-1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v8" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-droplet"><path d="M12 2L6 12a6 6 0 0 0 12 0L12 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-printer"><rect x="6" y="8" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 12H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4V2h8v2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-warning"><path d="M12 2L2 22h20L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10v4m0 4h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-globe"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cycle"><path d="M1 4v6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 15a9 9 0 1 0 2.2-9.7L1 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-utensils"><circle cx="7" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11v11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 3v18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 3h6v4a3 3 0 0 1-3 3v0a3 3 0 0 1-3-3V3z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-check-circle"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-check"><path d="M5 12l4 4L19 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-close"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Social -->
+    <g id="icon-telegram"><path d="M21.5 3.5 2 11l7.5 2.5L13 21Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="1" fill="currentColor"/></g>
+    <g id="icon-youtube"><path d="M22.5 7.5a2.5 2.5 0 0 0-2.5-2.5H4A2.5 2.5 0 0 0 1.5 7.5v9A2.5 2.5 0 0 0 4 19h16a2.5 2.5 0 0 0 2.5-2.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="currentColor"/></g>
+    <g id="icon-vk"><path d="M21.5 2.5h-19v19h19v-19Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 16c-4 0-6-3-6-6s2-6 6-6 6 3 6 6-2 6-6 6Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">B</text></g>
+
+    <!-- Arrow -->
+    <g id="icon-arrow-right"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </defs>
+</svg>
+
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <a href="calculator.html">Калькулятор КБЖУ</a>
+  <a href="test-rpp.html">Тест РПП</a>
+  <a href="https://t.me/onlyfit" target="_blank">Telegram</a>
+  <a href="#">Instagram</a>
+</div>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav">
+  <a href="../index.html" class="nav-logo">ONLYFIT</a>
+  <div class="nav-links">
+    <a href="trainers.html" class="active">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+  <div class="nav-cta">
+    <a href="eleonora.html#services" class="btn btn-primary btn-sm">Записаться</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-nav-overlay">
+  <span class="mobile-nav-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;flex-shrink:0"><use href="#icon-close"/></svg></span>
+  <div class="mobile-nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.5)">Тренеры</span>
+    </div>
+    <div class="page-header-eyebrow">Команда экспертов</div>
+    <h1 class="page-header-title">НАШИ<br>ТРЕНЕРЫ</h1>
+    <p class="page-header-sub">Сертифицированные специалисты с реальным опытом и доказательным подходом к фитнесу и нутрициологии.</p>
+  </div>
+</div>
+
+<!-- ELEONORA - FEATURED -->
+<section class="section-lg" style="background:var(--canvas)">
+  <div class="container">
+    <div id="eleonora" style="display:grid;grid-template-columns:2fr 3fr;gap:64px;align-items:start">
+      <div>
+        <div style="aspect-ratio:3/4;max-width:360px;overflow:hidden;background:var(--soft-cloud)">
+          <img src="../materials_photo/IMG_7136.JPG" alt="Элеонора Шехтерле"
+            style="width:100%;height:100%;object-fit:cover;object-position:top center">
+        </div>
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span class="label-tag teal">Нутрициология</span>
+            <span class="label-tag teal">Функциональный фитнес</span>
+            <span class="label-tag teal">РПП</span>
+            <span class="label-tag teal">Body Neutrality</span>
+            <span class="label-tag">Спортивное питание</span>
+          </div>
+          <div style="font-size:14px;color:var(--mute)">⭐ 4.9 · 500+ клиентов · С 2018 года</div>
+          <a href="eleonora.html" class="btn btn-primary">Полный профиль и услуги</a>
+        </div>
+      </div>
+      <div>
+        <span style="display:inline-block;background:var(--ink);color:var(--canvas);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;margin-bottom:24px">
+          Главный тренер
+        </span>
+        <h2 style="font-family:var(--font-display);font-size:64px;line-height:0.9;text-transform:uppercase;margin-bottom:24px">
+          Элеонора<br>Шехтерле
+        </h2>
+        <p style="font-size:16px;line-height:1.7;color:var(--charcoal);margin-bottom:24px">
+          Элеонора — дипломированный тренер и нутрициолог. Прошла путь от восстановления после родов и −20 кг до чемпионства. Чемпионка Кемеровской области в категории «фит-модель» 2023, двукратная вице-чемпионка Томской области (2023, 2024).
+        </p>
+        <p style="font-size:16px;line-height:1.7;color:var(--charcoal);margin-bottom:32px">
+          С 2018 года помогла более 500 клиентам выстроить устойчивые отношения с едой и телом — без жёстких диет, без самоистязания, с опорой на исследования и здравый смысл.
+        </p>
+        <div class="trainer-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hairline-soft);margin-bottom:32px">
+          <div style="padding:24px;background:var(--canvas)">
+            <div style="font-family:var(--font-display);font-size:40px;line-height:1;margin-bottom:4px">500+</div>
+            <div style="font-size:13px;color:var(--mute)">клиентов</div>
+          </div>
+          <div style="padding:24px;background:var(--canvas)">
+            <div style="font-family:var(--font-display);font-size:40px;line-height:1;margin-bottom:4px">10</div>
+            <div style="font-size:13px;color:var(--mute)">лет практики</div>
+          </div>
+          <div style="padding:24px;background:var(--canvas)">
+            <div style="font-family:var(--font-display);font-size:40px;line-height:1;margin-bottom:4px">94%</div>
+            <div style="font-size:13px;color:var(--mute)">достигают цели</div>
+          </div>
+          <div style="padding:24px;background:var(--canvas)">
+            <div style="font-family:var(--font-display);font-size:40px;line-height:1;margin-bottom:4px">4.9★</div>
+            <div style="font-size:13px;color:var(--mute)">рейтинг</div>
+          </div>
+        </div>
+        <h3 style="font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Образование и сертификаты</h3>
+        <div class="cert-list">
+          <div class="cert-item">
+            <div class="cert-year">2014</div>
+            <div><div class="cert-name">Диплом нутрициолога</div><div class="cert-org">Российский университет медицины</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2016</div>
+            <div><div class="cert-name">NSCA Certified Personal Trainer</div><div class="cert-org">National Strength and Conditioning Association</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2019</div>
+            <div><div class="cert-name">Специалист по РПП</div><div class="cert-org">Институт психологии питания (IPE)</div></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-year">2022</div>
+            <div><div class="cert-name">Certified Intuitive Eating Counselor</div><div class="cert-org">Evelyn Tribole &amp; Elyse Resch Institute</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div style="height:1px;background:var(--hairline-soft)"></div>
+
+<!-- MARIA -->
+<section class="section-lg" style="background:var(--soft-cloud)" id="maria">
+  <div class="container">
+    <div class="trainer-layout" style="display:grid;grid-template-columns:3fr 2fr;gap:64px;align-items:start">
+      <div>
+        <h2 style="font-family:var(--font-display);font-size:56px;line-height:0.9;text-transform:uppercase;margin-bottom:24px">
+          Мария<br>Соколова
+        </h2>
+        <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="label-tag pink">Йога</span>
+          <span class="label-tag pink">Женское здоровье</span>
+          <span class="label-tag">Гормоны</span>
+          <span class="label-tag">Беременность</span>
+        </div>
+        <p style="font-size:16px;color:var(--charcoal);line-height:1.7;margin-bottom:24px">
+          Мария специализируется на женском здоровье через призму движения и питания. Сертифицированный инструктор йоги и нутрициолог, фокусирующийся на гормональном балансе, беременности и постродовом восстановлении.
+        </p>
+        <p style="font-size:16px;color:var(--charcoal);line-height:1.7;margin-bottom:32px">
+          Её программы учитывают цикличность женского тела, перименопаузу и эмоциональный аспект питания. Подход бережный и ненасильственный — тело как союзник, не враг.
+        </p>
+        <div class="trainer-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg);margin-bottom:32px">
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-family:var(--font-display);font-size:36px;margin-bottom:4px">200+</div>
+            <div class="caption">клиентов</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-family:var(--font-display);font-size:36px;margin-bottom:4px">7</div>
+            <div class="caption">лет опыта</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-family:var(--font-display);font-size:36px;margin-bottom:4px">4.8★</div>
+            <div class="caption">рейтинг</div>
+          </div>
+        </div>
+        <h4 style="font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Индивидуальные услуги</h4>
+        <div class="trainer-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)">
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Онлайн-йога (персональная)</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">Индивидуальная практика с учётом цикла</div>
+            <div style="font-weight:700">3 500 ₽/занятие</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Консультация по гормонам</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">Разбор анализов и рекомендации</div>
+            <div style="font-weight:700">5 000 ₽</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Программа при беременности</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">4 недели питания и движения</div>
+            <div style="font-weight:700">15 000 ₽</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Постродовое восстановление</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">6 недель индивидуальной работы</div>
+            <div style="font-weight:700">20 000 ₽</div>
+          </div>
+        </div>
+        <div style="margin-top:24px">
+          <a href="mailto:maria@onlyfit.ru" class="btn btn-primary">Записаться к Марии</a>
+        </div>
+      </div>
+      <div>
+        <div class="trainer-avatar trainer-grad-2" style="aspect-ratio:3/4">
+          <div class="trainer-avatar-placeholder">
+            <span class="trainer-initials">МС</span>
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <h4 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Сертификаты</h4>
+          <div class="cert-list">
+            <div class="cert-item">
+              <div class="cert-year">2017</div>
+              <div><div class="cert-name">RYT-500 Yoga Alliance</div><div class="cert-org">Yoga Alliance International</div></div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-year">2019</div>
+              <div><div class="cert-name">Нутрициолог, специализация «Женское здоровье»</div><div class="cert-org">ИПП Москва</div></div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-year">2021</div>
+              <div><div class="cert-name">Перинатальный фитнес</div><div class="cert-org">ФГБОУ ВО РГУФКСМИТ</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div style="height:1px;background:var(--hairline-soft)"></div>
+
+<!-- DMITRY -->
+<section class="section-lg" style="background:var(--canvas)" id="dmitry">
+  <div class="container">
+    <div class="trainer-layout" style="display:grid;grid-template-columns:2fr 3fr;gap:64px;align-items:start">
+      <div>
+        <div class="trainer-avatar trainer-grad-3" style="aspect-ratio:3/4">
+          <div class="trainer-avatar-placeholder">
+            <span class="trainer-initials">ДВ</span>
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <h4 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Сертификаты</h4>
+          <div class="cert-list">
+            <div class="cert-item">
+              <div class="cert-year">2015</div>
+              <div><div class="cert-name">Диплом тренера по силовым видам спорта</div><div class="cert-org">РГУФКСМИТ</div></div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-year">2018</div>
+              <div><div class="cert-name">CSCS — Certified Strength and Conditioning</div><div class="cert-org">NSCA</div></div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-year">2023</div>
+              <div><div class="cert-name">Спортивная нутрициология</div><div class="cert-org">Precision Nutrition</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-family:var(--font-display);font-size:56px;line-height:0.9;text-transform:uppercase;margin-bottom:24px">
+          Дмитрий<br>Волков
+        </h2>
+        <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="label-tag">Силовой тренинг</span>
+          <span class="label-tag">Набор массы</span>
+          <span class="label-tag">Спортивное питание</span>
+          <span class="label-tag">Атлетика</span>
+        </div>
+        <p style="font-size:16px;color:var(--charcoal);line-height:1.7;margin-bottom:24px">
+          Дмитрий — специалист по силовому тренингу с академическим образованием в области физической культуры и спорта. 9 лет работы с атлетами от любителей до профессионалов.
+        </p>
+        <p style="font-size:16px;color:var(--charcoal);line-height:1.7;margin-bottom:32px">
+          Доказательный подход к прогрессии нагрузок, периодизации и спортивному питанию. Никакой «бро-науки» — только то, что подтверждено исследованиями.
+        </p>
+        <div class="trainer-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg);margin-bottom:32px">
+          <div style="padding:20px;border:1px solid var(--hairline)">
+            <div style="font-family:var(--font-display);font-size:36px;margin-bottom:4px">300+</div>
+            <div class="caption">клиентов</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline)">
+            <div style="font-family:var(--font-display);font-size:36px;margin-bottom:4px">9</div>
+            <div class="caption">лет опыта</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline)">
+            <div style="font-family:var(--font-display);font-size:36px;margin-bottom:4px">4.9★</div>
+            <div class="caption">рейтинг</div>
+          </div>
+        </div>
+        <h4 style="font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Индивидуальные услуги</h4>
+        <div class="trainer-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)">
+          <div style="padding:20px;border:1px solid var(--hairline)">
+            <div style="font-weight:600;margin-bottom:4px">Онлайн-тренинг</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">Ежемесячное сопровождение</div>
+            <div style="font-weight:700">7 500 ₽/мес</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline)">
+            <div style="font-weight:600;margin-bottom:4px">Программа на массу</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">8-недельная программа</div>
+            <div style="font-weight:700">12 000 ₽</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline)">
+            <div style="font-weight:600;margin-bottom:4px">Консультация по питанию</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">Спортивная нутрициология</div>
+            <div style="font-weight:700">4 000 ₽</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline)">
+            <div style="font-weight:600;margin-bottom:4px">Разбор тренировок</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">Видеоанализ техники</div>
+            <div style="font-weight:700">2 500 ₽</div>
+          </div>
+        </div>
+        <div style="margin-top:24px">
+          <a href="mailto:dmitry@onlyfit.ru" class="btn btn-primary">Записаться к Дмитрию</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div style="height:1px;background:var(--hairline-soft)"></div>
+
+<!-- KARINA -->
+<section class="section-lg" style="background:var(--soft-cloud)" id="karina">
+  <div class="container">
+    <div class="trainer-layout" style="display:grid;grid-template-columns:3fr 2fr;gap:64px;align-items:start">
+      <div>
+        <h2 style="font-family:var(--font-display);font-size:56px;line-height:0.9;text-transform:uppercase;margin-bottom:24px">
+          Карина<br>Александрова
+        </h2>
+        <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="label-tag success">Психология</span>
+          <span class="label-tag success">РПП</span>
+          <span class="label-tag">Осознанное питание</span>
+          <span class="label-tag">Поведение</span>
+        </div>
+        <p style="font-size:16px;color:var(--charcoal);line-height:1.7;margin-bottom:24px">
+          Карина — психолог с фокусом на расстройства пищевого поведения и эмоциональные отношения с едой. Помогает людям выйти из цикла диет, переедания и самонаказания.
+        </p>
+        <p style="font-size:16px;color:var(--charcoal);line-height:1.7;margin-bottom:32px">
+          Подход базируется на когнитивно-поведенческой терапии, DBT и принципах интуитивного питания. Работает с тревогой вокруг еды, расстройствами по DSM-5 (в рамках психологической поддержки, не медицинского лечения).
+        </p>
+        <div style="background:var(--canvas);border:1.5px solid var(--hairline);padding:var(--space-xl);margin-bottom:32px">
+          <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mute);margin-bottom:12px">Важно</div>
+          <p style="font-size:14px;color:var(--charcoal);line-height:1.7">
+            Карина предоставляет психологическую поддержку и коучинг, но не является психиатром. При тяжёлых формах РПП (анорексия, булимия) необходима команда специалистов. Она помогает координировать такую работу.
+          </p>
+        </div>
+        <h4 style="font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Индивидуальные услуги</h4>
+        <div class="trainer-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)">
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Психологическая сессия</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">50 минут онлайн</div>
+            <div style="font-weight:700">4 500 ₽</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Пакет 8 сессий</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">Курс работы с РПП</div>
+            <div style="font-weight:700">30 000 ₽ <span style="font-size:13px;color:var(--sale);text-decoration:line-through">36 000 ₽</span></div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Экспресс-консультация</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">25 минут + план работы</div>
+            <div style="font-weight:700">2 000 ₽</div>
+          </div>
+          <div style="padding:20px;border:1px solid var(--hairline);background:var(--canvas)">
+            <div style="font-weight:600;margin-bottom:4px">Группа поддержки</div>
+            <div style="font-size:14px;color:var(--mute);margin-bottom:8px">Онлайн-встречи раз в неделю</div>
+            <div style="font-weight:700">3 500 ₽/мес</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:24px">
+          <a href="mailto:karina@onlyfit.ru" class="btn btn-primary">Записаться к Карине</a>
+          <a href="test-rpp.html" class="btn btn-secondary">Пройти тест РПП</a>
+        </div>
+      </div>
+      <div>
+        <div class="trainer-avatar trainer-grad-4" style="aspect-ratio:3/4">
+          <div class="trainer-avatar-placeholder">
+            <span class="trainer-initials">КА</span>
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <h4 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Образование</h4>
+          <div class="cert-list">
+            <div class="cert-item">
+              <div class="cert-year">2016</div>
+              <div><div class="cert-name">Диплом клинического психолога</div><div class="cert-org">МГУ им. Ломоносова</div></div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-year">2018</div>
+              <div><div class="cert-name">Специализация КПТ</div><div class="cert-org">Институт когнитивного консультирования</div></div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-year">2020</div>
+              <div><div class="cert-name">DBT в работе с РПП</div><div class="cert-org">Behavioral Tech LLC</div></div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-year">2022</div>
+              <div><div class="cert-name">Intuitive Eating Counselor</div><div class="cert-org">Tribole &amp; Resch Institute</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section style="background:var(--ink);padding:80px 0">
+  <div class="container text-center">
+    <div class="overline mb-md" style="color:rgba(255,255,255,0.4)">Первый шаг</div>
+    <h2 class="heading-xl mb-xl" style="color:var(--canvas)">НЕ ЗНАЕТЕ,<br>К КОМУ<br>ОБРАТИТЬСЯ?</h2>
+    <p style="font-size:18px;color:rgba(255,255,255,0.65);max-width:480px;margin:0 auto 40px;line-height:1.6">
+      Пройдите квиз — мы подберём подходящего специалиста под ваш запрос и цель.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="calculator.html" class="btn btn-primary btn-lg">Пройти квиз</a>
+      <a href="eleonora.html#services" class="btn btn-outline-white btn-lg">Записаться к Элеоноре</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">ONLYFIT</div>
+        <p class="footer-tagline">Доказательный фитнес и нутрициология без стыда и чудес.</p>
+      </div>
+      <div><div class="footer-col-title">Тренеры</div><div class="footer-links">
+        <a href="eleonora.html">Элеонора Шехтерле</a>
+        <a href="#maria">Мария Соколова</a>
+        <a href="#dmitry">Дмитрий Волков</a>
+        <a href="#karina">Карина Александрова</a>
+      </div></div>
+      <div><div class="footer-col-title">Инструменты</div><div class="footer-links">
+        <a href="calculator.html">Калькулятор КБЖУ</a>
+        <a href="test-rpp.html">Тест РПП</a>
+      </div></div>
+      <div><div class="footer-col-title">Продукты</div><div class="footer-links">
+        <a href="products.html">Все продукты</a>
+      </div></div>
+      <div><div class="footer-col-title">Компания</div><div class="footer-links">
+        <a href="#">О нас</a><a href="#">Контакты</a>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 OnlyFit</span>
+      <div class="footer-bottom-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Дисклеймер</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

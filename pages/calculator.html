@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор КБЖУ — OnlyFit</title>
+  <meta name="description" content="Рассчитайте индивидуальную норму калорий, белков, жиров и углеводов по анкете. Учитываем цель, активность и особенности организма.">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .step-dots { display:flex; gap:8px; margin-bottom:32px; }
+    .step-dot { width:8px; height:8px; border-radius:50%; background:var(--hairline); transition:0.3s; }
+    .step-dot.active { background:var(--ink); width:24px; border-radius:4px; }
+    .step-dot.done { background:var(--success); }
+    .result-macro-bar { height:6px; border-radius:3px; margin-top:8px; }
+    .bar-protein { background:var(--info); }
+    .bar-fat { background:#f59e0b; }
+    .bar-carbs { background:var(--success); }
+    .bar-calories { background:var(--ink); }
+    .input-group { display:flex; border:1.5px solid var(--hairline); overflow:hidden; }
+    .input-group input { border:none; flex:1; padding:0 16px; height:48px; font-size:16px; }
+    .input-group input:focus { outline:none; }
+    .input-group-addon { display:flex; align-items:center; padding:0 16px; background:var(--soft-cloud); font-size:14px; font-weight:500; color:var(--mute); border-left:1.5px solid var(--hairline); }
+    .gender-btn { flex:1; height:56px; border:1.5px solid var(--hairline); background:var(--canvas); font-size:16px; font-weight:500; cursor:pointer; transition:0.15s; }
+    .gender-btn.active { background:var(--ink); color:var(--canvas); border-color:var(--ink); }
+    .activity-option { display:flex; align-items:center; gap:16px; padding:16px 20px; border:1.5px solid var(--hairline); cursor:pointer; transition:0.15s; margin-bottom:8px; }
+    .activity-option:hover { border-color:var(--charcoal); }
+    .activity-option.selected { border-color:var(--ink); background:var(--soft-cloud); }
+    .activity-radio { width:20px; height:20px; border-radius:50%; border:1.5px solid var(--hairline); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .activity-option.selected .activity-radio { background:var(--ink); border-color:var(--ink); }
+    .activity-option.selected .activity-radio::after { content:''; width:8px; height:8px; border-radius:50%; background:white; }
+    .goal-btn { padding:20px; border:1.5px solid var(--hairline); cursor:pointer; transition:0.15s; text-align:left; background:var(--canvas); width:100%; }
+    .goal-btn:hover { border-color:var(--charcoal); }
+    .goal-btn.active { border-color:var(--ink); background:var(--soft-cloud); }
+    .goal-btn .goal-label { font-size:16px; font-weight:600; display:block; margin-bottom:4px; }
+    .goal-btn .goal-sub { font-size:13px; color:var(--mute); }
+    .goal-btn.active .goal-sub { color:var(--charcoal); }
+    .meal-plan-item { padding:16px 0; border-bottom:1px solid var(--hairline-soft); display:flex; justify-content:space-between; align-items:center; }
+    .meal-plan-item:last-child { border-bottom:none; }
+    .print-btn { display:none; }
+    @media print { .print-btn { display:block; } .no-print { display:none !important; } }
+    /* Results responsive */
+    @media (max-width: 480px) {
+      .calc-macro-cards { grid-template-columns: 1fr !important; }
+      .calc-bmr-cards { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <!-- Goals -->
+    <g id="icon-fire"><path d="M12 2C9 7 4 10 4 14a8 8 0 0 0 16 0c0-4-5-7-8-12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-muscle"><path d="M18 6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h1l1 4-2 4H6l-2 4h2.5L8 18l2 4h1.5L10 16l2-4 2 4-1.5 6H14l2-4 1.5-2H20l-2-4h-2l-2-4 1-4h1a2 2 0 0 0 2-2v0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-flower"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v5"/><path d="M12 17v5"/><path d="M4.93 4.93l3.54 3.54"/><path d="M15.53 15.53l3.54 3.54"/><path d="M2 12h5"/><path d="M17 12h5"/><path d="M4.93 19.07l3.54-3.54"/><path d="M15.53 8.47l3.54-3.54"/></g></g>
+    <g id="icon-bolt"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Products -->
+    <g id="icon-book"><path d="M4 6h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h16V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v16" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-play"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></g>
+    <g id="icon-chart"><path d="M4 20V10m8 10V4m8 16v-8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-document"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-heart"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-run"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 22l2-7 3 3 3-5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 13l-3 2v3" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-gift"><rect x="3" y="6" width="18" height="5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v15M3 11h18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6H9.5a2.5 2.5 0 0 1 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6h2.5a2.5 2.5 0 0 0 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Services -->
+    <g id="icon-chat"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-rocket"><path d="M12 15l-3-3m3 3a22 22 0 0 1 4-7m-4 7a22 22 0 0 0-4-7m4 7l3-3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-watch"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-layers"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-star"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Trust -->
+    <g id="icon-science"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cert"><path d="M12 2L2 7l10 5 10-5-10-5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-hands"><path d="M7 11V7a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M17 11V7a4 4 0 0 0-4-4v0a4 4 0 0 0-4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-medical"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Security -->
+    <g id="icon-lock"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-infinity"><path d="M9.5 8a5 5 0 1 0 4.96 6M14.5 16a5 5 0 1 0-4.96-6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Misc -->
+    <g id="icon-target"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-clipboard"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 3V1h6v2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6m-6 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-calculator"><rect x="3" y="2" width="18" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h10M7 12h4m3 0h4m-11 4h4m3 0h4m-11 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-brain"><path d="M12 2A4 4 0 0 0 8 6c0 2 2 3 2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 11A5 5 0 0 0 3 15v2a2 2 0 0 0 2 2h1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 11a5 5 0 0 1 5 4v2a2 2 0 0 1-2 2h-1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v8" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-droplet"><path d="M12 2L6 12a6 6 0 0 0 12 0L12 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-printer"><rect x="6" y="8" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 12H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4V2h8v2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-warning"><path d="M12 2L2 22h20L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10v4m0 4h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-globe"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cycle"><path d="M1 4v6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 15a9 9 0 1 0 2.2-9.7L1 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-utensils"><circle cx="7" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11v11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 3v18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 3h6v4a3 3 0 0 1-3 3v0a3 3 0 0 1-3-3V3z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-check-circle"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-check"><path d="M5 12l4 4L19 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-close"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Social -->
+    <g id="icon-telegram"><path d="M21.5 3.5 2 11l7.5 2.5L13 21Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="1" fill="currentColor"/></g>
+    <g id="icon-youtube"><path d="M22.5 7.5a2.5 2.5 0 0 0-2.5-2.5H4A2.5 2.5 0 0 0 1.5 7.5v9A2.5 2.5 0 0 0 4 19h16a2.5 2.5 0 0 0 2.5-2.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="currentColor"/></g>
+    <g id="icon-vk"><path d="M21.5 2.5h-19v19h19v-19Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 16c-4 0-6-3-6-6s2-6 6-6 6 3 6 6-2 6-6 6Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">B</text></g>
+
+    <!-- Arrow -->
+    <g id="icon-arrow-right"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </defs>
+</svg>
+
+
+<!-- UTILITY BAR -->
+<div class="utility-bar no-print">
+  <a href="test-rpp.html">Тест РПП</a>
+  <a href="eleonora.html">Записаться к Элеоноре</a>
+  <a href="https://t.me/onlyfit" target="_blank">Telegram</a>
+</div>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav no-print">
+  <a href="../index.html" class="nav-logo">ONLYFIT</a>
+  <div class="nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html" class="active">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+  <div class="nav-cta"><a href="eleonora.html#services" class="btn btn-primary btn-sm">Записаться</a></div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-nav-overlay no-print">
+  <span class="mobile-nav-close">✕</span>
+  <div class="mobile-nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header no-print">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.5)">Калькулятор КБЖУ</span>
+    </div>
+    <div class="page-header-eyebrow">Персональный расчёт</div>
+    <h1 class="page-header-title">КБЖУ<br>КАЛЬКУЛЯТОР</h1>
+    <p class="page-header-sub">Заполните анкету — получите персональную норму калорий, белков, жиров и углеводов с планом питания.</p>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="no-print" style="background:var(--soft-cloud);padding:16px 0">
+  <div class="container">
+    <div class="disclaimer-box" style="border-radius:0">
+      <strong>Важная информация</strong>
+      Калькулятор предоставляет примерные значения на основе научных формул. Индивидуальные потребности могут отличаться. При наличии хронических заболеваний, беременности или РПП — проконсультируйтесь с врачом или нутрициологом.
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATOR -->
+<section class="section-lg">
+  <div class="container">
+    <div class="calc-layout">
+
+      <!-- FORM -->
+      <div id="calcContainer">
+
+        <!-- Step Dots -->
+        <div class="step-dots" id="stepDots">
+          <div class="step-dot active" data-step="1"></div>
+          <div class="step-dot" data-step="2"></div>
+          <div class="step-dot" data-step="3"></div>
+          <div class="step-dot" data-step="4"></div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="quiz-progress-bar" style="margin-bottom:8px">
+          <div class="quiz-progress-fill" id="progressFill" style="width:25%"></div>
+        </div>
+        <div style="font-size:12px;color:var(--mute);margin-bottom:32px" id="progressLabel">Шаг 1 из 4</div>
+
+        <!-- STEP 1: Personal Data -->
+        <div class="quiz-step active" id="step1">
+          <div class="quiz-step-label">Шаг 1 · Личные данные</div>
+          <h2 class="quiz-question">Расскажите немного о себе</h2>
+
+          <div class="form-group">
+            <label class="form-label">Пол</label>
+            <div style="display:flex;gap:0;border:1.5px solid var(--hairline)">
+              <button type="button" class="gender-btn active" id="btnMale" onclick="selectGender('male')">♂ Мужской</button>
+              <button type="button" class="gender-btn" id="btnFemale" onclick="selectGender('female')" style="border-left:1.5px solid var(--hairline)">♀ Женский</button>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top:20px">
+            <div class="form-group" style="margin:0">
+              <label class="form-label" for="age">Возраст</label>
+              <div class="input-group">
+                <input type="number" id="calcAge" placeholder="30" min="14" max="90" value="">
+                <div class="input-group-addon">лет</div>
+              </div>
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Рост</label>
+              <div class="input-group">
+                <input type="number" id="calcHeight" placeholder="170" min="100" max="250" value="">
+                <div class="input-group-addon">см</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top:20px">
+            <label class="form-label">Вес</label>
+            <div class="input-group">
+              <input type="number" id="calcWeight" placeholder="70" min="20" max="300" value="">
+              <div class="input-group-addon">кг</div>
+            </div>
+          </div>
+
+          <div id="step1Error" style="display:none;color:var(--sale);font-size:14px;margin-top:12px">
+            Пожалуйста, заполните все поля корректными значениями.
+          </div>
+
+          <button class="btn btn-primary btn-lg" style="margin-top:32px" onclick="nextStep(1)">Далее →</button>
+        </div>
+
+        <!-- STEP 2: Activity Level -->
+        <div class="quiz-step" id="step2">
+          <div class="quiz-step-label">Шаг 2 · Активность</div>
+          <h2 class="quiz-question">Как вы двигаетесь в обычной жизни?</h2>
+
+          <div id="activityOptions">
+            <div class="activity-option" onclick="selectActivity(this, 1.2)">
+              <div class="activity-radio"></div>
+              <div>
+                <div style="font-weight:600;margin-bottom:2px">Малоподвижный образ жизни</div>
+                <div style="font-size:13px;color:var(--mute)">Офисная работа, мало движения, почти нет тренировок</div>
+              </div>
+            </div>
+            <div class="activity-option" onclick="selectActivity(this, 1.375)">
+              <div class="activity-radio"></div>
+              <div>
+                <div style="font-weight:600;margin-bottom:2px">Умеренно активный</div>
+                <div style="font-size:13px;color:var(--mute)">1–3 тренировки в неделю или активная пешеходная жизнь</div>
+              </div>
+            </div>
+            <div class="activity-option" onclick="selectActivity(this, 1.55)">
+              <div class="activity-radio"></div>
+              <div>
+                <div style="font-weight:600;margin-bottom:2px">Активный</div>
+                <div style="font-size:13px;color:var(--mute)">3–5 тренировок в неделю средней-высокой интенсивности</div>
+              </div>
+            </div>
+            <div class="activity-option" onclick="selectActivity(this, 1.725)">
+              <div class="activity-radio"></div>
+              <div>
+                <div style="font-weight:600;margin-bottom:2px">Очень активный</div>
+                <div style="font-size:13px;color:var(--mute)">6–7 тренировок в неделю или физический труд</div>
+              </div>
+            </div>
+            <div class="activity-option" onclick="selectActivity(this, 1.9)">
+              <div class="activity-radio"></div>
+              <div>
+                <div style="font-weight:600;margin-bottom:2px">Экстремально активный</div>
+                <div style="font-size:13px;color:var(--mute)">Профессиональный спорт, тяжёлый физический труд</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="step2Error" style="display:none;color:var(--sale);font-size:14px;margin-top:12px">
+            Выберите уровень активности.
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:32px">
+            <button class="btn btn-secondary" onclick="prevStep(2)">← Назад</button>
+            <button class="btn btn-primary btn-lg" onclick="nextStep(2)">Далее →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Goal -->
+        <div class="quiz-step" id="step3">
+          <div class="quiz-step-label">Шаг 3 · Цель</div>
+          <h2 class="quiz-question">Какова ваша основная цель?</h2>
+
+          <div style="display:flex;flex-direction:column;gap:12px" id="goalOptions">
+            <button type="button" class="goal-btn" onclick="selectGoal(this,'loss',-0.2)">
+              <span class="goal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;vertical-align:-3px;margin-right:6px"><use href="#icon-fire"/></svg>Снижение веса</span>
+              <span class="goal-sub">Дефицит калорий −20% от поддержания. Умеренный темп: 0.5–0.8 кг/неделю.</span>
+            </button>
+            <button type="button" class="goal-btn" onclick="selectGoal(this,'maintain',0)">
+              <span class="goal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;vertical-align:-3px;margin-right:6px"><use href="#icon-target"/></svg>Поддержание веса</span>
+              <span class="goal-sub">Норма калорий для сохранения текущего веса и улучшения состава тела.</span>
+            </button>
+            <button type="button" class="goal-btn" onclick="selectGoal(this,'gain',0.12)">
+              <span class="goal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;vertical-align:-3px;margin-right:6px"><use href="#icon-muscle"/></svg>Набор мышечной массы</span>
+              <span class="goal-sub">Небольшой профицит +12% для роста мышц с минимальным накоплением жира.</span>
+            </button>
+          </div>
+
+          <div id="step3Error" style="display:none;color:var(--sale);font-size:14px;margin-top:12px">
+            Выберите цель.
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:32px">
+            <button class="btn btn-secondary" onclick="prevStep(3)">← Назад</button>
+            <button class="btn btn-primary btn-lg" onclick="nextStep(3)">Далее →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Preferences -->
+        <div class="quiz-step" id="step4">
+          <div class="quiz-step-label">Шаг 4 · Питание</div>
+          <h2 class="quiz-question">Есть ли особенности питания?</h2>
+
+          <div style="display:flex;flex-direction:column;gap:8px" id="prefOptions">
+            <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--hairline);cursor:pointer">
+              <input type="checkbox" value="vegetarian" style="width:18px;height:18px;accent-color:var(--ink)" onchange="onDietChange(this)">
+              <span style="font-size:15px;font-weight:500">Вегетарианство</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--hairline);cursor:pointer">
+              <input type="checkbox" value="vegan" style="width:18px;height:18px;accent-color:var(--ink)" onchange="onDietChange(this)">
+              <span style="font-size:15px;font-weight:500">Веганство</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--hairline);cursor:pointer">
+              <input type="checkbox" value="lactose" style="width:18px;height:18px;accent-color:var(--ink)" onchange="onDietChange(this)">
+              <span style="font-size:15px;font-weight:500">Непереносимость лактозы</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--hairline);cursor:pointer">
+              <input type="checkbox" value="gluten" style="width:18px;height:18px;accent-color:var(--ink)" onchange="onDietChange(this)">
+              <span style="font-size:15px;font-weight:500">Безглютеновая диета</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--hairline);cursor:pointer">
+              <input type="checkbox" value="none" id="cbNone" style="width:18px;height:18px;accent-color:var(--ink)" checked onchange="onNoneRestrictions(this)">
+              <span style="font-size:15px;font-weight:500">Без ограничений</span>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-top:24px">
+            <label class="form-label" for="mealsCount">Количество приёмов пищи в день</label>
+            <select id="mealsCount" class="form-select">
+              <option value="3">3 раза (завтрак, обед, ужин)</option>
+              <option value="4" selected>4 раза (+перекус)</option>
+              <option value="5">5 раз (+2 перекуса)</option>
+              <option value="2">2 раза (интервальное)</option>
+            </select>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:32px">
+            <button class="btn btn-secondary" onclick="prevStep(4)">← Назад</button>
+            <button class="btn btn-primary btn-lg" onclick="calculateResults()">Рассчитать КБЖУ ✓</button>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="quiz-step" id="stepResults">
+          <div id="resultsContent"></div>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="no-print" style="position:sticky;top:80px">
+        <div style="background:var(--soft-cloud);padding:32px;margin-bottom:24px">
+          <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Формула расчёта</div>
+          <p style="font-size:14px;color:var(--charcoal);line-height:1.7;margin-bottom:16px">
+            Используем формулу <strong>Миффлина — Сан Жеора</strong> — наиболее точную для расчёта базального метаболизма (BMR).
+          </p>
+          <div style="background:var(--canvas);padding:16px;font-size:13px;color:var(--mute);font-family:monospace;line-height:1.8;margin-bottom:16px">
+            <div style="color:var(--ink);font-weight:600;margin-bottom:8px">Мужчины:</div>
+            BMR = 10×кг + 6.25×см − 5×лет + 5
+            <div style="color:var(--ink);font-weight:600;margin-top:12px;margin-bottom:8px">Женщины:</div>
+            BMR = 10×кг + 6.25×см − 5×лет − 161
+            <div style="color:var(--ink);font-weight:600;margin-top:12px;margin-bottom:8px">TDEE:</div>
+            TDEE = BMR × коэф. активности
+          </div>
+          <p style="font-size:13px;color:var(--mute);line-height:1.6">
+            Погрешность ±10%. Для точного расчёта — консультация нутрициолога.
+          </p>
+        </div>
+
+        <div style="background:var(--ink);padding:32px;color:var(--canvas)">
+          <div style="width:24px;height:24px;margin-bottom:16px;color:var(--canvas)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:100%;height:100%"><use href="#icon-target"/></svg></div>
+          <div style="font-size:18px;font-weight:700;margin-bottom:12px">Нужна точнее?</div>
+          <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:24px">
+            Элеонора учтёт ваш состав тела, историю диет, гормональный фон и пищевые привычки.
+          </p>
+          <a href="eleonora.html#services" class="btn btn-primary" style="background:var(--canvas);color:var(--ink);width:100%;justify-content:center">Записаться на консультацию</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer no-print">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo">ONLYFIT</div><p class="footer-tagline">Доказательный фитнес и нутрициология.</p></div>
+      <div><div class="footer-col-title">Инструменты</div><div class="footer-links"><a href="calculator.html">Калькулятор КБЖУ</a><a href="test-rpp.html">Тест РПП</a></div></div>
+      <div><div class="footer-col-title">Тренеры</div><div class="footer-links"><a href="eleonora.html">Элеонора Шехтерле</a><a href="trainers.html">Все тренеры</a></div></div>
+      <div><div class="footer-col-title">Продукты</div><div class="footer-links"><a href="products.html">Все продукты</a></div></div>
+      <div><div class="footer-col-title">Компания</div><div class="footer-links"><a href="#">О нас</a><a href="#">Контакты</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 OnlyFit. Расчёты носят информационный характер.</span></div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+// State
+let state = {
+  gender: 'male',
+  age: null, height: null, weight: null,
+  activityMultiplier: null,
+  goalMultiplier: null, goalType: null,
+  meals: 4
+};
+let currentStep = 1;
+
+function selectGender(g) {
+  state.gender = g;
+  document.getElementById('btnMale').classList.toggle('active', g==='male');
+  document.getElementById('btnFemale').classList.toggle('active', g==='female');
+}
+
+function selectActivity(el, mult) {
+  document.querySelectorAll('.activity-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  state.activityMultiplier = mult;
+}
+
+function selectGoal(el, type, mult) {
+  document.querySelectorAll('.goal-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  state.goalType = type;
+  state.goalMultiplier = mult;
+}
+
+function nextStep(from) {
+  if (from === 1) {
+    const age = parseInt(document.getElementById('calcAge').value);
+    const height = parseInt(document.getElementById('calcHeight').value);
+    const weight = parseInt(document.getElementById('calcWeight').value);
+    if (!age || !height || !weight || age<14 || age>90 || height<100 || height>250 || weight<20 || weight>300) {
+      document.getElementById('step1Error').style.display = 'block';
+      return;
+    }
+    document.getElementById('step1Error').style.display = 'none';
+    state.age = age; state.height = height; state.weight = weight;
+  }
+  if (from === 2 && !state.activityMultiplier) {
+    document.getElementById('step2Error').style.display = 'block'; return;
+  }
+  if (from === 3 && state.goalMultiplier === null) {
+    document.getElementById('step3Error').style.display = 'block'; return;
+  }
+  goToStep(from + 1);
+}
+
+function prevStep(from) { goToStep(from - 1); }
+
+function goToStep(n) {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  const target = n <= 4 ? `step${n}` : 'stepResults';
+  document.getElementById(target)?.classList.add('active');
+  currentStep = n;
+  updateProgress(n);
+}
+
+function updateProgress(n) {
+  const total = 4;
+  const pct = Math.min((n / total) * 100, 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = n <= total ? `Шаг ${n} из ${total}` : 'Результат';
+  document.querySelectorAll('.step-dot').forEach((dot, i) => {
+    dot.classList.remove('active','done');
+    if (i + 1 < n) dot.classList.add('done');
+    else if (i + 1 === n) dot.classList.add('active');
+  });
+}
+
+function onDietChange(cb) {
+  if (cb.checked) {
+    document.getElementById('cbNone').checked = false;
+  }
+}
+
+function onNoneRestrictions(cb) {
+  if (cb.checked) {
+    document.querySelectorAll('#prefOptions input[type=checkbox]').forEach(c => {
+      if (c !== cb) c.checked = false;
+    });
+  }
+}
+
+function calculateResults() {
+  state.meals = parseInt(document.getElementById('mealsCount').value);
+
+  // BMR — Mifflin-St Jeor
+  let bmr;
+  if (state.gender === 'male') {
+    bmr = 10 * state.weight + 6.25 * state.height - 5 * state.age + 5;
+  } else {
+    bmr = 10 * state.weight + 6.25 * state.height - 5 * state.age - 161;
+  }
+
+  // TDEE
+  const tdee = Math.round(bmr * state.activityMultiplier);
+
+  // Goal calories
+  const goalCalories = Math.round(tdee * (1 + state.goalMultiplier));
+
+  // Macros
+  let proteinPct, fatPct, carbPct;
+  if (state.goalType === 'loss') {
+    proteinPct = 0.35; fatPct = 0.30; carbPct = 0.35;
+  } else if (state.goalType === 'gain') {
+    proteinPct = 0.30; fatPct = 0.25; carbPct = 0.45;
+  } else {
+    proteinPct = 0.25; fatPct = 0.30; carbPct = 0.45;
+  }
+
+  const proteinKcal = Math.round(goalCalories * proteinPct);
+  const fatKcal = Math.round(goalCalories * fatPct);
+  const carbKcal = Math.round(goalCalories * carbPct);
+  const proteinG = Math.round(proteinKcal / 4);
+  const fatG = Math.round(fatKcal / 9);
+  const carbG = Math.round(carbKcal / 4);
+
+  // Per meal
+  const calPerMeal = Math.round(goalCalories / state.meals);
+  const proteinPerMeal = Math.round(proteinG / state.meals);
+
+  // Meal plan
+  const mealPlans = {
+    2: [
+      { name: 'Обед (12:00)', cal: Math.round(goalCalories * 0.55), prot: Math.round(proteinG * 0.6) },
+      { name: 'Ужин (18:00)', cal: Math.round(goalCalories * 0.45), prot: Math.round(proteinG * 0.4) }
+    ],
+    3: [
+      { name: 'Завтрак (8:00)', cal: Math.round(goalCalories * 0.30), prot: Math.round(proteinG * 0.25) },
+      { name: 'Обед (13:00)', cal: Math.round(goalCalories * 0.40), prot: Math.round(proteinG * 0.40) },
+      { name: 'Ужин (19:00)', cal: Math.round(goalCalories * 0.30), prot: Math.round(proteinG * 0.35) }
+    ],
+    4: [
+      { name: 'Завтрак (8:00)', cal: Math.round(goalCalories * 0.28), prot: Math.round(proteinG * 0.25) },
+      { name: 'Обед (13:00)', cal: Math.round(goalCalories * 0.35), prot: Math.round(proteinG * 0.35) },
+      { name: 'Перекус (16:00)', cal: Math.round(goalCalories * 0.12), prot: Math.round(proteinG * 0.10) },
+      { name: 'Ужин (19:30)', cal: Math.round(goalCalories * 0.25), prot: Math.round(proteinG * 0.30) }
+    ],
+    5: [
+      { name: 'Завтрак (8:00)', cal: Math.round(goalCalories * 0.25), prot: Math.round(proteinG * 0.22) },
+      { name: 'Перекус (11:00)', cal: Math.round(goalCalories * 0.10), prot: Math.round(proteinG * 0.08) },
+      { name: 'Обед (13:30)', cal: Math.round(goalCalories * 0.30), prot: Math.round(proteinG * 0.32) },
+      { name: 'Перекус (16:30)', cal: Math.round(goalCalories * 0.10), prot: Math.round(proteinG * 0.10) },
+      { name: 'Ужин (19:30)', cal: Math.round(goalCalories * 0.25), prot: Math.round(proteinG * 0.28) }
+    ]
+  };
+
+  const selectedMealPlan = mealPlans[state.meals] || mealPlans[4];
+  const goalLabel = { loss: 'Снижение веса', maintain: 'Поддержание', gain: 'Набор массы' }[state.goalType];
+  const goalColor = { loss: '#d30005', maintain: '#007d48', gain: '#1151ff' }[state.goalType];
+
+  const mealRows = selectedMealPlan.map(m =>
+    `<div class="meal-plan-item">
+      <div>
+        <div style="font-weight:600;font-size:15px">${m.name}</div>
+        <div style="font-size:13px;color:var(--mute)">${m.prot} г белка</div>
+      </div>
+      <div style="font-family:var(--font-display);font-size:24px">${m.cal} <span style="font-size:14px;font-family:var(--font-body);color:var(--mute);font-weight:400">ккал</span></div>
+    </div>`
+  ).join('');
+
+  const recText = {
+    loss: `<strong>Для снижения веса:</strong> Акцентируйте внимание на белке (${proteinG} г/день) — он поддерживает сытость и мышечную массу. Не снижайте калории ниже ${Math.round(tdee * 0.65)} ккал. Срыв — это не повод всё бросить, а сигнал пересмотреть план.`,
+    maintain: `<strong>Для поддержания:</strong> ${goalCalories} ккал позволят сохранить вес, улучшая состав тела через тренировки. Стремитесь к ${proteinG} г белка — это основа мышечного тонуса и восстановления.`,
+    gain: `<strong>Для набора массы:</strong> Небольшой профицит +12% позволит набирать ~0.3–0.5 кг/неделю с минимальным ростом жира. Ключ — ${proteinG} г белка и прогрессия нагрузок в тренажёрном зале.`
+  }[state.goalType];
+
+  document.getElementById('resultsContent').innerHTML = `
+    <div style="display:inline-block;background:${goalColor};color:white;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;margin-bottom:24px">
+      ${goalLabel}
+    </div>
+
+    <h2 style="font-family:var(--font-display);font-size:56px;line-height:0.9;text-transform:uppercase;margin-bottom:8px">
+      ${goalCalories}
+    </h2>
+    <div style="font-size:16px;color:var(--mute);margin-bottom:40px">ккал / день · основной расчёт</div>
+
+    <!-- Macro Cards -->
+    <div class="calc-macro-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline);margin-bottom:40px">
+      <div style="background:var(--canvas);padding:24px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:40px;color:var(--info);line-height:1;margin-bottom:4px">${proteinG}</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mute)">Белки (г)</div>
+        <div class="result-macro-bar bar-protein" style="width:${proteinPct*100}%"></div>
+        <div style="font-size:12px;color:var(--mute);margin-top:8px">${Math.round(proteinPct*100)}% · ${proteinKcal} ккал</div>
+      </div>
+      <div style="background:var(--canvas);padding:24px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:40px;color:#f59e0b;line-height:1;margin-bottom:4px">${fatG}</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mute)">Жиры (г)</div>
+        <div class="result-macro-bar bar-fat" style="width:${fatPct*100}%"></div>
+        <div style="font-size:12px;color:var(--mute);margin-top:8px">${Math.round(fatPct*100)}% · ${fatKcal} ккал</div>
+      </div>
+      <div style="background:var(--canvas);padding:24px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:40px;color:var(--success);line-height:1;margin-bottom:4px">${carbG}</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mute)">Углеводы (г)</div>
+        <div class="result-macro-bar bar-carbs" style="width:${carbPct*100}%"></div>
+        <div style="font-size:12px;color:var(--mute);margin-top:8px">${Math.round(carbPct*100)}% · ${carbKcal} ккал</div>
+      </div>
+    </div>
+
+    <!-- BMR Info -->
+    <div class="calc-bmr-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hairline);margin-bottom:40px">
+      <div style="background:var(--soft-cloud);padding:20px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mute);margin-bottom:8px">Базовый метаболизм (BMR)</div>
+        <div style="font-family:var(--font-display);font-size:32px">${Math.round(bmr)} <span style="font-size:16px;font-family:var(--font-body);color:var(--mute)">ккал</span></div>
+      </div>
+      <div style="background:var(--soft-cloud);padding:20px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mute);margin-bottom:8px">Поддерживающие калории (TDEE)</div>
+        <div style="font-family:var(--font-display);font-size:32px">${tdee} <span style="font-size:16px;font-family:var(--font-body);color:var(--mute)">ккал</span></div>
+      </div>
+    </div>
+
+    <!-- Meal Plan -->
+    <h3 style="font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Распределение по приёмам пищи</h3>
+    <div style="border:1px solid var(--hairline);padding:0 24px;margin-bottom:32px">
+      ${mealRows}
+    </div>
+
+    <!-- Recommendations -->
+    <div style="background:var(--soft-cloud);padding:24px;margin-bottom:32px">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Рекомендации</div>
+      <p style="font-size:14px;color:var(--charcoal);line-height:1.7">${recText}</p>
+    </div>
+
+    <!-- Water -->
+    <div style="display:flex;align-items:center;gap:16px;padding:20px;border:1px solid var(--hairline);margin-bottom:32px">
+      <div style="width:32px;height:32px;color:var(--info);flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:100%;height:100%"><use href="#icon-droplet"/></svg></div>
+      <div>
+        <div style="font-weight:600;margin-bottom:4px">Норма воды: <span style="color:var(--info)">${(state.weight * 0.033).toFixed(1)} л / день</span></div>
+        <div style="font-size:13px;color:var(--mute)">При тренировках добавляйте 500–750 мл на каждый час активности</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-printer"/></svg> Распечатать</button>
+      <button class="btn btn-secondary" onclick="resetCalculator()">Пересчитать</button>
+      <a href="eleonora.html#services" class="btn btn-outline">Записаться к нутрициологу</a>
+    </div>
+
+    <div style="margin-top:24px;padding:16px;border:1px solid var(--hairline-soft);font-size:12px;color:var(--mute);line-height:1.7">
+      Расчёт выполнен по формуле Миффлина — Сан Жеора. Погрешность ±5–10%. Значения носят информационный характер. При хронических заболеваниях, беременности или расстройствах пищевого поведения проконсультируйтесь с врачом.
+    </div>
+  `;
+
+  goToStep(5);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetCalculator() {
+  state = { gender: 'male', age: null, height: null, weight: null, activityMultiplier: null, goalMultiplier: null, goalType: null, meals: 4 };
+  document.getElementById('calcAge').value = '';
+  document.getElementById('calcHeight').value = '';
+  document.getElementById('calcWeight').value = '';
+  document.querySelectorAll('.activity-option').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.goal-btn').forEach(b => b.classList.remove('active'));
+  selectGender('male');
+  goToStep(1);
+}
+</script>
+</body>
+</html>

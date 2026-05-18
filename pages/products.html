@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Цифровые продукты — OnlyFit</title>
+  <meta name="description" content="PDF-гайды, видеокурсы и презентации по питанию, тренировкам и психологии пищевого поведения от экспертов OnlyFit.">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .product-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .product-modal-overlay.open { display: flex; }
+    .product-modal {
+      background: var(--canvas);
+      max-width: 560px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .product-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
+      color: var(--ink);
+    }
+    /* Trust block responsive */
+    @media (max-width: 768px) {
+      .trust-4col { grid-template-columns: 1fr 1fr !important; gap: var(--space-xl) !important; }
+    }
+    @media (max-width: 480px) {
+      .trust-4col { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <!-- Goals -->
+    <g id="icon-fire"><path d="M12 2C9 7 4 10 4 14a8 8 0 0 0 16 0c0-4-5-7-8-12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-muscle"><path d="M18 6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h1l1 4-2 4H6l-2 4h2.5L8 18l2 4h1.5L10 16l2-4 2 4-1.5 6H14l2-4 1.5-2H20l-2-4h-2l-2-4 1-4h1a2 2 0 0 0 2-2v0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-flower"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v5"/><path d="M12 17v5"/><path d="M4.93 4.93l3.54 3.54"/><path d="M15.53 15.53l3.54 3.54"/><path d="M2 12h5"/><path d="M17 12h5"/><path d="M4.93 19.07l3.54-3.54"/><path d="M15.53 8.47l3.54-3.54"/></g></g>
+    <g id="icon-bolt"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Products -->
+    <g id="icon-book"><path d="M4 6h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h16V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v16" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-play"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></g>
+    <g id="icon-chart"><path d="M4 20V10m8 10V4m8 16v-8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-document"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-heart"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-run"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 22l2-7 3 3 3-5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 13l-3 2v3" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-gift"><rect x="3" y="6" width="18" height="5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v15M3 11h18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6H9.5a2.5 2.5 0 0 1 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6h2.5a2.5 2.5 0 0 0 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Services -->
+    <g id="icon-chat"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-rocket"><path d="M12 15l-3-3m3 3a22 22 0 0 1 4-7m-4 7a22 22 0 0 0-4-7m4 7l3-3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-watch"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-layers"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-star"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+
+    <!-- Trust -->
+    <g id="icon-science"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cert"><path d="M12 2L2 7l10 5 10-5-10-5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-hands"><path d="M7 11V7a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M17 11V7a4 4 0 0 0-4-4v0a4 4 0 0 0-4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-medical"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Security -->
+    <g id="icon-lock"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-infinity"><path d="M9.5 8a5 5 0 1 0 4.96 6M14.5 16a5 5 0 1 0-4.96-6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+
+    <!-- Misc -->
+    <g id="icon-target"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
+    <g id="icon-clipboard"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 3V1h6v2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6m-6 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-calculator"><rect x="3" y="2" width="18" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h10M7 12h4m3 0h4m-11 4h4m3 0h4m-11 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-brain"><path d="M12 2A4 4 0 0 0 8 6c0 2 2 3 2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 11A5 5 0 0 0 3 15v2a2 2 0 0 0 2 2h1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 11a5 5 0 0 1 5 4v2a2 2 0 0 1-2 2h-1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v8" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-droplet"><path d="M12 2L6 12a6 6 0 0 0 12 0L12 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-printer"><rect x="6" y="8" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 12H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4V2h8v2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-warning"><path d="M12 2L2 22h20L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10v4m0 4h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-globe"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cycle"><path d="M1 4v6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 15a9 9 0 1 0 2.2-9.7L1 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-utensils"><circle cx="7" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11v11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 3v18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 3h6v4a3 3 0 0 1-3 3v0a3 3 0 0 1-3-3V3z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-check-circle"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-check"><path d="M5 12l4 4L19 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-close"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+
+    <!-- Social -->
+    <g id="icon-telegram"><path d="M21.5 3.5 2 11l7.5 2.5L13 21Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="1" fill="currentColor"/></g>
+    <g id="icon-youtube"><path d="M22.5 7.5a2.5 2.5 0 0 0-2.5-2.5H4A2.5 2.5 0 0 0 1.5 7.5v9A2.5 2.5 0 0 0 4 19h16a2.5 2.5 0 0 0 2.5-2.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="currentColor"/></g>
+    <g id="icon-vk"><path d="M21.5 2.5h-19v19h19v-19Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 16c-4 0-6-3-6-6s2-6 6-6 6 3 6 6-2 6-6 6Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">B</text></g>
+
+    <!-- Arrow -->
+    <g id="icon-arrow-right"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </defs>
+</svg>
+
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <a href="calculator.html">Калькулятор КБЖУ</a>
+  <a href="test-rpp.html">Тест РПП</a>
+  <a href="https://t.me/onlyfit" target="_blank">Telegram</a>
+  <a href="#">Instagram</a>
+</div>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav">
+  <a href="../index.html" class="nav-logo">ONLYFIT</a>
+  <div class="nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html" class="active">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+  <div class="nav-cta">
+    <a href="eleonora.html#services" class="btn btn-primary btn-sm">Записаться</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-nav-overlay">
+  <span class="mobile-nav-close">✕</span>
+  <div class="mobile-nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.5)">Продукты</span>
+    </div>
+    <div class="page-header-eyebrow">Цифровые продукты</div>
+    <h1 class="page-header-title">КУРСЫ<br>&amp; ГАЙДЫ</h1>
+    <p class="page-header-sub">PDF-руководства, видеокурсы и презентации от экспертов OnlyFit. Скачайте сразу после оплаты.</p>
+  </div>
+</div>
+
+<!-- FILTER + PRODUCTS -->
+<section class="section-lg" style="background:var(--canvas)">
+  <div class="container">
+
+    <!-- Filter Chips -->
+    <div class="filter-chips" data-filter-group>
+      <button class="chip active" data-filter="all">Все продукты</button>
+      <button class="chip" data-filter="pdf" id="pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-document"/></svg> PDF-гайды</button>
+      <button class="chip" data-filter="video" id="video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-play"/></svg> Видеокурсы</button>
+      <button class="chip" data-filter="presentation" id="pres"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-chart"/></svg> Презентации</button>
+      <button class="chip" data-filter="free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-gift"/></svg> Бесплатные</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid">
+
+      <!-- Free 1: 10 шагов к идеальному телу -->
+      <div class="product-card" data-category="free">
+        <div class="product-cover product-grad-7">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-target"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag teal">Бесплатно</span></div>
+        </div>
+        <div class="product-name">10 шагов к идеальному телу</div>
+        <div class="product-author">Элеонора Шехтерле · PDF, 17.3 МБ</div>
+        <div class="product-price" style="color:var(--accent-teal)">Бесплатно</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Пошаговое руководство по трансформации тела без жёстких диет. Чек-листы, план действий, разбор ошибок.</p>
+        <a href="../downloads/10-shagov-k-idealnomu-telu.pdf" class="btn btn-free" style="justify-content:center" download onclick="trackFreeDownload('10-shagov-k-idealnomu-telu.pdf')">Скачать</a>
+      </div>
+
+      <!-- Free 2: 10 навыков саморегуляции -->
+      <div class="product-card" data-category="free">
+        <div class="product-cover product-grad-8">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-brain"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag teal">Бесплатно</span></div>
+        </div>
+        <div class="product-name">10 навыков саморегуляции</div>
+        <div class="product-author">Карина Александрова · PDF, 3.9 МБ</div>
+        <div class="product-price" style="color:var(--accent-teal)">Бесплатно</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Рабочая тетрадь: техники управления эмоциями, стрессом и импульсивным перееданием.</p>
+        <a href="../downloads/10-navykov-samoregulyacii.pdf" class="btn btn-free" style="justify-content:center" download onclick="trackFreeDownload('10-navykov-samoregulyacii.pdf')">Скачать</a>
+      </div>
+
+      <!-- PDF 1 -->
+      <div class="product-card" data-category="pdf">
+        <div class="product-cover product-grad-1">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-book"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag">PDF-гайд</span></div>
+          <div style="position:absolute;top:12px;right:12px"><span class="label-tag" style="background:var(--sale);color:white">−34%</span></div>
+        </div>
+        <div class="product-name">Питание без хаоса</div>
+        <div class="product-author">Элеонора Шехтерле · 68 страниц</div>
+        <div class="product-price">990 ₽ <span class="old-price">1 490 ₽</span><span class="discount">−34%</span></div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Пошаговый гайд по выстраиванию питания без диет и подсчёта. Практические инструменты, чек-листы, меню.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal1')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal1')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- Video 1 -->
+      <div class="product-card" data-category="video">
+        <div class="product-cover product-grad-2">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-play"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag pink">Видеокурс</span></div>
+        </div>
+        <div class="product-name">21-дневный протокол силы</div>
+        <div class="product-author">Дмитрий Волков · 24 видеоурока</div>
+        <div class="product-price">2 490 ₽</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Полный курс силового тренинга для набора мышечной массы. Техника, прогрессия, питание.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal2')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal2')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- Presentation 1 -->
+      <div class="product-card" data-category="presentation">
+        <div class="product-cover product-grad-3">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-chart"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag success">Презентация</span></div>
+        </div>
+        <div class="product-name">Гормоны и питание</div>
+        <div class="product-author">Мария Соколова · 84 слайда</div>
+        <div class="product-price">1 290 ₽</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Как гормоны влияют на аппетит, метаболизм и жироотложение. Практические рекомендации для женщин.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal3')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal3')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- PDF 2 -->
+      <div class="product-card" data-category="pdf">
+        <div class="product-cover product-grad-4">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-heart"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag">PDF-гайд</span></div>
+          <div style="position:absolute;top:12px;right:12px"><span class="label-tag" style="background:var(--sale);color:white">−25%</span></div>
+        </div>
+        <div class="product-name">Ешь без вины</div>
+        <div class="product-author">Карина Александрова · 52 страницы</div>
+        <div class="product-price">890 ₽ <span class="old-price">1 190 ₽</span><span class="discount">−25%</span></div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Рабочая тетрадь по психологии питания. Упражнения по осознанному питанию, работа с триггерами и самосостраданием.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal4')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal4')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- PDF 3 -->
+      <div class="product-card" data-category="pdf">
+        <div class="product-cover product-grad-5">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-calendar"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag">PDF-гайд</span></div>
+        </div>
+        <div class="product-name">30-дневный старт питания</div>
+        <div class="product-author">Элеонора Шехтерле · 96 страниц</div>
+        <div class="product-price">1 490 ₽</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Полный план питания на 30 дней с рецептами, списком покупок и КБЖУ. Для тех, кто начинает с нуля.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal5')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal5')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="product-card" data-category="video">
+        <div class="product-cover product-grad-6">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-brain"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag pink">Видеокурс</span></div>
+        </div>
+        <div class="product-name">Понимание КБЖУ</div>
+        <div class="product-author">Элеонора Шехтерле · 16 уроков</div>
+        <div class="product-price">1 990 ₽</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Видеокурс о белках, жирах и углеводах: что это такое, как считать и почему не нужно бояться ни одного из них.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal6')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal6')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- Presentation 2 -->
+      <div class="product-card" data-category="presentation">
+        <div class="product-cover product-grad-1" style="background:linear-gradient(135deg,#fff4f0,#ffddd0)">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-flower"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag success">Презентация</span></div>
+        </div>
+        <div class="product-name">Женский цикл и спорт</div>
+        <div class="product-author">Мария Соколова · 60 слайдов</div>
+        <div class="product-price">990 ₽</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Как тренироваться и питаться в разные фазы цикла. Наука о циклическом питании без мифов.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal7')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal7')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="product-card" data-category="video">
+        <div class="product-cover product-grad-3" style="background:linear-gradient(135deg,#f0f8f0,#d0edd0)">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-run"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag pink">Видеокурс</span></div>
+          <div style="position:absolute;top:12px;right:12px"><span class="label-tag success">Новинка</span></div>
+        </div>
+        <div class="product-name">Кардио без потери мышц</div>
+        <div class="product-author">Дмитрий Волков · 12 уроков</div>
+        <div class="product-price">1 690 ₽</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Как правильно совмещать кардио и силовые. Протоколы LISS, HIIT, Zone 2 с объяснением механизмов.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal8')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal8')">Подробнее</button>
+        </div>
+      </div>
+
+      <!-- PDF Bundle -->
+      <div class="product-card" data-category="pdf" style="border:2px solid var(--ink)">
+        <div class="product-cover" style="background:var(--ink)">
+          <div style="width:64px;height:64px;opacity:0.4;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-gift"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag" style="background:var(--accent-teal);color:white">Бандл</span></div>
+        </div>
+        <div class="product-name">Полный старт-пак</div>
+        <div class="product-author">Все авторы · 3 гайда + 2 видеокурса</div>
+        <div class="product-price">4 990 ₽ <span class="old-price">8 450 ₽</span><span class="discount">−41%</span></div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Полный набор для старта: Питание без хаоса + 30-дневный план + Ешь без вины + Понимание КБЖУ + Кардио без потери мышц.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modalBundle')">Купить бандл</button>
+        </div>
+      </div>
+
+      <!-- Paid video: Как сжигается жир -->
+      <div class="product-card" data-category="video">
+        <div class="product-cover product-grad-2">
+          <div style="width:64px;height:64px;opacity:0.3;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-fire"/></svg></div>
+          <div class="product-type-badge"><span class="label-tag pink">Видеокурс</span></div>
+        </div>
+        <div class="product-name">Как лучше сжигается жир и какую нагрузку выбрать</div>
+        <div class="product-author">Элеонора Шехтерле · MOV, 513 МБ</div>
+        <div class="product-price">1 990 ₽</div>
+        <p style="font-size:13px;color:var(--mute);margin-bottom:12px">Научный разбор: кардио vs силовые vs интервальные. Какая нагрузка эффективнее для жиросжигания.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="openModal('modal9')">Купить</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('modal9')">Подробнее</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BLOCK -->
+<section class="section" style="background:var(--soft-cloud)">
+  <div class="container">
+    <div class="trust-4col" style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-xl)">
+      <div style="text-align:center">
+        <div style="width:32px;height:32px;margin-bottom:12px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-bolt"/></svg></div>
+        <div style="font-weight:600;margin-bottom:6px">Мгновенный доступ</div>
+        <div style="font-size:13px;color:var(--mute)">Получите файлы сразу после оплаты</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:32px;height:32px;margin-bottom:12px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-lock"/></svg></div>
+        <div style="font-weight:600;margin-bottom:6px">Безопасная оплата</div>
+        <div style="font-size:13px;color:var(--mute)">ЮКassa, карты, СБП</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:32px;height:32px;margin-bottom:12px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;flex-shrink:0"><use href="#icon-infinity"/></svg></div>
+        <div style="font-weight:600;margin-bottom:6px">Навсегда ваше</div>
+        <div style="font-size:13px;color:var(--mute)">Скачайте и используйте без ограничений</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:32px;margin-bottom:12px">↩</div>
+        <div style="font-weight:600;margin-bottom:6px">Возврат 7 дней</div>
+        <div style="font-size:13px;color:var(--mute)">Если продукт не подошёл — вернём деньги</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALS -->
+<div class="product-modal-overlay" id="modal1">
+  <div class="product-modal">
+    <button class="product-modal-close" onclick="closeModal('modal1')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:20px;height:20px;flex-shrink:0"><use href="#icon-close"/></svg></button>
+    <div style="background:linear-gradient(135deg,#f0f8ff,#ddeeff);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-book"/></svg></div>
+    <span class="label-tag">PDF-гайд · 68 страниц</span>
+    <h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Питание без хаоса</h3>
+    <div style="color:var(--mute);font-size:14px;margin-bottom:16px">Элеонора Шехтерле</div>
+    <div style="font-size:22px;font-weight:700;margin-bottom:24px">990 ₽ <span style="font-size:14px;color:var(--mute);text-decoration:line-through;font-weight:400">1 490 ₽</span></div>
+    <h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Что внутри</h4>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Принципы гибкого питания без запретов</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Как составить рацион под свой образ жизни</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Меню на 2 недели с рецептами</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Чек-листы покупок</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Алгоритм восстановления после срыва</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Приложение: топ-50 быстрых здоровых рецептов</li>
+    </ul>
+    <button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('Питание без хаоса', 990)">Купить за 990 ₽</button>
+  </div>
+</div>
+
+<div class="product-modal-overlay" id="modal2">
+  <div class="product-modal">
+    <button class="product-modal-close" onclick="closeModal('modal2')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:20px;height:20px;flex-shrink:0"><use href="#icon-close"/></svg></button>
+    <div style="background:linear-gradient(135deg,#fff0f8,#ffddee);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-play"/></svg></div>
+    <span class="label-tag pink">Видеокурс · 24 урока</span>
+    <h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">21-дневный протокол силы</h3>
+    <div style="color:var(--mute);font-size:14px;margin-bottom:16px">Дмитрий Волков</div>
+    <div style="font-size:22px;font-weight:700;margin-bottom:24px">2 490 ₽</div>
+    <h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Программа курса</h4>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> 24 видеоурока (3–15 мин каждый)</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Техника базовых упражнений с разборами</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Периодизация и прогрессия нагрузок</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Питание для набора массы (PDF)</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Excel-трекер прогресса</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Бессрочный доступ</li>
+    </ul>
+    <button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('21-дневный протокол силы', 2490)">Купить за 2 490 ₽</button>
+  </div>
+</div>
+
+<div class="product-modal-overlay" id="modal3">
+  <div class="product-modal">
+    <button class="product-modal-close" onclick="closeModal('modal3')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:20px;height:20px;flex-shrink:0"><use href="#icon-close"/></svg></button>
+    <div style="background:linear-gradient(135deg,#f0fff4,#ddffd6);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-chart"/></svg></div>
+    <span class="label-tag success">Презентация · 84 слайда</span>
+    <h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Гормоны и питание</h3>
+    <div style="color:var(--mute);font-size:14px;margin-bottom:16px">Мария Соколова</div>
+    <div style="font-size:22px;font-weight:700;margin-bottom:24px">1 290 ₽</div>
+    <h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Темы</h4>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Инсулин, кортизол, лептин, грелин</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Как гормоны влияют на голод и насыщение</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Питание при инсулинорезистентности</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Щитовидная железа и метаболизм</li>
+      <li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span> Практические рекомендации + источники</li>
+    </ul>
+    <button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('Гормоны и питание', 1290)">Купить за 1 290 ₽</button>
+  </div>
+</div>
+
+<!-- Generic Modals for remaining products -->
+<div class="product-modal-overlay" id="modal4"><div class="product-modal"><button class="product-modal-close" onclick="closeModal('modal4')">✕</button><div style="background:linear-gradient(135deg,#fffbf0,#fff0d0);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-heart"/></svg></div><span class="label-tag">PDF-гайд · 52 страницы</span><h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Ешь без вины</h3><div style="color:var(--mute);font-size:14px;margin-bottom:16px">Карина Александрова — рабочая тетрадь</div><div style="font-size:22px;font-weight:700;margin-bottom:24px">890 ₽</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px"><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Упражнения на осознанность в питании</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Карты триггеров переедания</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Техники самосострадания (Self-Compassion)</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Ежедневные практики</li></ul><button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('Ешь без вины', 890)">Купить за 890 ₽</button></div></div>
+
+<div class="product-modal-overlay" id="modal5"><div class="product-modal"><button class="product-modal-close" onclick="closeModal('modal5')">✕</button><div style="background:linear-gradient(135deg,#f8f0ff,#edd6ff);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-calendar"/></svg></div><span class="label-tag">PDF-гайд · 96 страниц</span><h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">30-дневный старт питания</h3><div style="color:var(--mute);font-size:14px;margin-bottom:16px">Элеонора Шехтерле</div><div style="font-size:22px;font-weight:700;margin-bottom:24px">1 490 ₽</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px"><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Полный план на 30 дней</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>60+ рецептов с КБЖУ</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Еженедельные списки покупок</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Варианты для вегетарианцев</li></ul><button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('30-дневный старт', 1490)">Купить за 1 490 ₽</button></div></div>
+
+<div class="product-modal-overlay" id="modal6"><div class="product-modal"><button class="product-modal-close" onclick="closeModal('modal6')">✕</button><div style="background:linear-gradient(135deg,#f0fffc,#d6fff5);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-brain"/></svg></div><span class="label-tag pink">Видеокурс · 16 уроков</span><h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Понимание КБЖУ</h3><div style="color:var(--mute);font-size:14px;margin-bottom:16px">Элеонора Шехтерле</div><div style="font-size:22px;font-weight:700;margin-bottom:24px">1 990 ₽</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px"><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Что такое белки, жиры, углеводы</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Как считать и стоит ли вообще</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Мифы о макросах с разборами</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Практика без стресса</li></ul><button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('Понимание КБЖУ', 1990)">Купить за 1 990 ₽</button></div></div>
+
+<div class="product-modal-overlay" id="modal7"><div class="product-modal"><button class="product-modal-close" onclick="closeModal('modal7')">✕</button><div style="background:linear-gradient(135deg,#fff4f0,#ffddd0);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-flower"/></svg></div><span class="label-tag success">Презентация · 60 слайдов</span><h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Женский цикл и спорт</h3><div style="color:var(--mute);font-size:14px;margin-bottom:16px">Мария Соколова</div><div style="font-size:22px;font-weight:700;margin-bottom:24px">990 ₽</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px"><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Фазы цикла и физиология</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Питание по фазам</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Интенсивность тренировок по фазам</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Наука: 20+ источников</li></ul><button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('Женский цикл и спорт', 990)">Купить за 990 ₽</button></div></div>
+
+<div class="product-modal-overlay" id="modal8"><div class="product-modal"><button class="product-modal-close" onclick="closeModal('modal8')">✕</button><div style="background:linear-gradient(135deg,#f0f8f0,#d0edd0);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-run"/></svg></div><span class="label-tag pink">Видеокурс · 12 уроков</span><h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Кардио без потери мышц</h3><div style="color:var(--mute);font-size:14px;margin-bottom:16px">Дмитрий Волков</div><div style="font-size:22px;font-weight:700;margin-bottom:24px">1 690 ₽</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px"><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Протоколы LISS, HIIT, Zone 2</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Как совмещать с силовыми</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Питание вокруг кардио</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>Программы на 4, 8 и 12 недель</li></ul><button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('Кардио без потери мышц', 1690)">Купить за 1 690 ₽</button></div></div>
+
+<div class="product-modal-overlay" id="modalBundle"><div class="product-modal"><button class="product-modal-close" onclick="closeModal('modalBundle')">✕</button><div style="background:var(--ink);height:180px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:24px;color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-gift"/></svg></div><span class="label-tag" style="background:var(--accent-teal);color:white">Бандл · 5 продуктов</span><h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Полный старт-пак</h3><div style="color:var(--mute);font-size:14px;margin-bottom:8px">Все авторы OnlyFit</div><div style="font-size:22px;font-weight:700;margin-bottom:4px">4 990 ₽ <span style="font-size:14px;color:var(--mute);font-weight:400;text-decoration:line-through">8 450 ₽</span></div><div style="color:var(--sale);font-size:14px;font-weight:600;margin-bottom:24px">Вы экономите 3 460 ₽ (−41%)</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px"><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>📖 Питание без хаоса</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>📅 30-дневный старт питания</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>💚 Ешь без вины</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>🧠 Понимание КБЖУ (видеокурс)</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-check"/></svg></span>🏃 Кардио без потери мышц (видеокурс)</li></ul><button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="purchaseProduct('Полный старт-пак', 4990)">Купить бандл за 4 990 ₽</button></div></div>
+
+<div class="product-modal-overlay" id="modal9"><div class="product-modal"><button class="product-modal-close" onclick="closeModal('modal9')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:20px;height:20px;flex-shrink:0"><use href="#icon-close"/></svg></button><div style="background:linear-gradient(135deg,#fff0f8,#ffddee);height:180px;display:flex;align-items:center;justify-content:center;margin-bottom:24px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;color:var(--ink);opacity:0.3"><use href="#icon-fire"/></svg></div><span class="label-tag pink">Видеокурс · MOV, 513 МБ</span><h3 style="font-size:24px;font-weight:700;margin:16px 0 8px">Как лучше сжигается жир и какую нагрузку выбрать</h3><div style="color:var(--mute);font-size:14px;margin-bottom:16px">Элеонора Шехтерле</div><div style="font-size:22px;font-weight:700;margin-bottom:24px">1 990 ₽</div><h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Содержание</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px"><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px"><use href="#icon-check"/></svg></span>Какой тип нагрузки эффективнее для жиросжигания</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px"><use href="#icon-check"/></svg></span>Разбор мифов: кардио, силовые, интервальные</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px"><use href="#icon-check"/></svg></span>Подбор нагрузки под ваш уровень</li><li style="display:flex;gap:8px;font-size:14px"><span style="color:var(--success);width:16px;height:16px;display:inline-flex;flex-shrink:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px"><use href="#icon-check"/></svg></span>Практические примеры тренировок</li></ul><div style="background:#fef3c7;padding:10px 14px;font-size:12px;color:#92400e;margin-bottom:16px;display:flex;align-items:center;gap:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0"><use href="#icon-warning"/></svg>Файл весит 513 МБ. Рекомендуем Wi-Fi.</div><button class="btn btn-primary btn-lg w-full" style="justify-content:center" onclick="redirectToCheckout()">Купить за 1 990 ₽</button></div></div>
+
+<!-- Purchase Success Modal -->
+<div class="product-modal-overlay" id="modalSuccess">
+  <div class="product-modal" style="text-align:center;padding:60px 40px">
+    <div style="width:64px;height:64px;margin-bottom:24px;color:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;flex-shrink:0"><use href="#icon-check-circle"/></svg></div>
+    <h3 style="font-size:28px;font-weight:700;margin-bottom:12px">Оплата прошла!</h3>
+    <p id="purchaseDetails" style="font-size:16px;color:var(--mute);margin-bottom:32px">Ссылка на скачивание отправлена на ваш email.</p>
+    <button class="btn btn-secondary" onclick="closeModal('modalSuccess')">Продолжить покупки</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo">ONLYFIT</div><p class="footer-tagline">Доказательный фитнес и нутрициология.</p></div>
+      <div><div class="footer-col-title">Тренеры</div><div class="footer-links"><a href="eleonora.html">Элеонора Шехтерле</a><a href="trainers.html">Все тренеры</a></div></div>
+      <div><div class="footer-col-title">Продукты</div><div class="footer-links"><a href="products.html">Все продукты</a></div></div>
+      <div><div class="footer-col-title">Инструменты</div><div class="footer-links"><a href="calculator.html">Калькулятор КБЖУ</a><a href="test-rpp.html">Тест РПП</a></div></div>
+      <div><div class="footer-col-title">Компания</div><div class="footer-links"><a href="#">О нас</a><a href="#">Контакты</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 OnlyFit</span><div class="footer-bottom-links"><a href="#">Политика конфиденциальности</a><a href="#">Условия использования</a></div></div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function openModal(id) {
+  document.getElementById(id)?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id)?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function purchaseProduct(name, price) {
+  document.querySelectorAll('.product-modal-overlay').forEach(m => m.classList.remove('open'));
+  document.getElementById('purchaseDetails').textContent = `«${name}» за ${price.toLocaleString('ru-RU')} ₽ — ссылка для скачивания отправлена на email.`;
+  openModal('modalSuccess');
+}
+// Close modal on overlay click
+document.querySelectorAll('.product-modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+});
+function trackFreeDownload(filename) {
+  const downloads = JSON.parse(localStorage.getItem('of_downloads') || '{}');
+  downloads[filename] = (downloads[filename] || 0) + 1;
+  localStorage.setItem('of_downloads', JSON.stringify(downloads));
+}
+function redirectToCheckout() {
+  window.location.href = 'checkout.html?product=fat-burning&price=1990';
+}
+</script>
+</body>
+</html>

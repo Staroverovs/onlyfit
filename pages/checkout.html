@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформление заказа — OnlyFit</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <g id="icon-lock"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-fire"><path d="M12 2C9 7 4 10 4 14a8 8 0 0 0 16 0c0-4-5-7-8-12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-check"><path d="M5 12l4 4L19 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-warning"><path d="M12 2L2 22h20L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10v4m0 4h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-arrow-right"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-science"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+  </defs>
+</svg>
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <a href="calculator.html">Калькулятор КБЖУ</a>
+  <a href="test-rpp.html">Тест РПП</a>
+  <a href="https://t.me/onlyfit" target="_blank">Telegram</a>
+  <a href="#">Instagram</a>
+</div>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav">
+  <a href="../index.html" class="nav-logo">ONLYFIT</a>
+  <div class="nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+  <div class="nav-cta">
+    <a href="eleonora.html#services" class="btn btn-primary btn-sm">Записаться</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-nav-overlay">
+  <span class="mobile-nav-close">✕</span>
+  <div class="mobile-nav-links">
+    <a href="trainers.html">Тренеры</a>
+    <a href="products.html">Продукты</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="test-rpp.html">Тест РПП</a>
+    <a href="eleonora.html">Элеонора</a>
+    <a href="blog.html">Блог</a>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<section class="section-lg" style="background:var(--canvas)">
+  <div class="container">
+
+    <div class="breadcrumb" style="margin-bottom:var(--space-xl)">
+      <a href="../index.html">Главная</a><span>/</span>
+      <a href="products.html">Продукты</a><span>/</span>
+      <span style="color:rgba(0,0,0,0.4)">Оформление заказа</span>
+    </div>
+
+    <!-- Test mode badge -->
+    <div class="test-mode-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px"><use href="#icon-science"/></svg>
+      Тестовый режим — реальная оплата не производится
+    </div>
+
+    <div class="checkout-layout">
+      <!-- Left: Form -->
+      <div>
+        <h2 style="font-family:var(--font-display);font-size:36px;line-height:0.9;text-transform:uppercase;margin-bottom:var(--space-xl)">Оформление<br>заказа</h2>
+
+        <div style="margin-bottom:var(--space-xl)">
+          <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Имя и фамилия</label>
+          <input type="text" placeholder="Иван Иванов" style="width:100%;height:48px;padding:0 16px;border:1.5px solid var(--hairline);font-size:14px;background:var(--canvas)">
+        </div>
+
+        <div style="margin-bottom:var(--space-xl)">
+          <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Email</label>
+          <input type="email" placeholder="email@example.com" style="width:100%;height:48px;padding:0 16px;border:1.5px solid var(--hairline);font-size:14px;background:var(--canvas)">
+        </div>
+
+        <div style="margin-bottom:var(--space-xl)">
+          <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Номер карты</label>
+          <div style="position:relative">
+            <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" style="width:100%;height:48px;padding:0 16px 0 48px;border:1.5px solid var(--hairline);font-size:14px;background:var(--canvas)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="position:absolute;left:14px;top:14px;width:18px;height:18px;color:var(--mute)"><use href="#icon-lock"/></svg>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg);margin-bottom:var(--space-section)">
+          <div>
+            <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">Срок действия</label>
+            <input type="text" placeholder="ММ / ГГ" maxlength="7" style="width:100%;height:48px;padding:0 16px;border:1.5px solid var(--hairline);font-size:14px;background:var(--canvas)">
+          </div>
+          <div>
+            <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">CVC</label>
+            <input type="text" placeholder="123" maxlength="4" style="width:100%;height:48px;padding:0 16px;border:1.5px solid var(--hairline);font-size:14px;background:var(--canvas)">
+          </div>
+        </div>
+
+        <button id="pay-btn" class="btn btn-primary btn-lg w-full" style="justify-content:center;gap:8px" onclick="processPayment()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><use href="#icon-lock"/></svg>
+          Оплатить <span id="checkout-total-btn">1 990 ₽</span>
+        </button>
+
+        <p style="font-size:12px;color:var(--mute);text-align:center;margin-top:var(--space-md)">
+          Это тестовый режим. Нажимая «Оплатить», вы перейдёте на страницу доступа без реального списания средств.
+        </p>
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div>
+        <div class="checkout-summary-card">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:var(--space-lg)">Ваш заказ</h3>
+          <div style="display:flex;gap:var(--space-md);align-items:center;margin-bottom:var(--space-lg);padding-bottom:var(--space-lg);border-bottom:1px solid var(--hairline)">
+            <div style="width:56px;height:56px;background:linear-gradient(135deg,#fff4e0,#ffe0a0);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:28px;height:28px;color:var(--ink);opacity:0.5"><use href="#icon-fire"/></svg>
+            </div>
+            <div style="flex:1;min-width:0">
+              <div id="checkout-product-name" style="font-size:14px;font-weight:600;line-height:1.3">Как лучше сжигается жир и какую физ нагрузку выбрать</div>
+              <div style="font-size:12px;color:var(--mute);margin-top:2px">Видеокурс · Элеонора Шехтерле</div>
+            </div>
+          </div>
+          <div class="checkout-summary-row">
+            <span style="color:var(--mute)">Стоимость</span>
+            <span id="checkout-product-price">1 990 ₽</span>
+          </div>
+          <div class="checkout-summary-total">
+            <span>Итого</span>
+            <span id="checkout-total">1 990 ₽</span>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-top:var(--space-md);font-size:12px;color:var(--mute)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;flex-shrink:0"><use href="#icon-lock"/></svg>
+          Данные не сохраняются и никуда не отправляются
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo">ONLYFIT</div><p class="footer-tagline">Доказательный фитнес и нутрициология.</p></div>
+      <div><div class="footer-col-title">Тренеры</div><div class="footer-links"><a href="eleonora.html">Элеонора Шехтерле</a><a href="trainers.html">Все тренеры</a></div></div>
+      <div><div class="footer-col-title">Продукты</div><div class="footer-links"><a href="products.html">Все продукты</a></div></div>
+      <div><div class="footer-col-title">Инструменты</div><div class="footer-links"><a href="calculator.html">Калькулятор КБЖУ</a><a href="test-rpp.html">Тест РПП</a></div></div>
+      <div><div class="footer-col-title">Блог</div><div class="footer-links"><a href="blog.html">Все статьи</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 OnlyFit</span><div class="footer-bottom-links"><a href="#">Политика конфиденциальности</a><a href="#">Условия</a></div></div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const nameMap = {
+      'fat-burning': 'Как лучше сжигается жир и какую физ нагрузку выбрать'
+    };
+    const product = params.get('product') || 'fat-burning';
+    const price = parseInt(params.get('price') || '1990');
+    document.getElementById('checkout-product-name').textContent = nameMap[product] || product;
+    document.getElementById('checkout-product-price').textContent = price.toLocaleString('ru-RU') + ' ₽';
+    document.getElementById('checkout-total').textContent = price.toLocaleString('ru-RU') + ' ₽';
+    document.getElementById('checkout-total-btn').textContent = price.toLocaleString('ru-RU') + ' ₽';
+  });
+
+  function processPayment() {
+    const btn = document.getElementById('pay-btn');
+    if (btn.classList.contains('btn-processing')) return;
+    btn.classList.add('btn-processing');
+    btn.innerHTML = 'Обрабатываем...';
+    setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
+      window.location.href = 'unlock.html?' + params.toString();
+    }, 2200);
+  }
+</script>
+</body>
+</html>
