@@ -1380,67 +1380,77 @@ ul, ol { list-style: none; }
 @media (max-width: 480px) {
   .editorial-strip > * { height: 380px; }
 
-  /* ── Horizontal scroll carousels ── */
-  .goals-grid {
-    display: flex !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 12px;
-    padding: 0 var(--space-xl) var(--space-xl);
-    margin: 0 calc(-1 * var(--space-xl));
-  }
-  .goals-grid::-webkit-scrollbar { display: none; }
-  .goals-grid > * {
-    min-width: 78vw;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-  .products-grid {
-    display: flex !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 12px;
-    padding: 0 var(--space-xl) var(--space-xl);
-    margin: 0 calc(-1 * var(--space-xl));
-  }
-  .products-grid::-webkit-scrollbar { display: none; }
-  .products-grid > * {
-    min-width: 78vw;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
+  /* ── Goals: 2×2 grid, capped tile height ── */
+  .goals-grid { grid-template-columns: 1fr 1fr !important; }
+  .goal-tile { aspect-ratio: unset !important; height: 200px; }
+
+  /* ── Products: single column ── */
+  .products-grid { grid-template-columns: 1fr; }
+
+  /* ── Trainers: horizontal swipe carousel ── */
   .trainers-grid {
     display: flex !important;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    gap: 12px;
-    padding: 0 var(--space-xl) var(--space-xl);
-    margin: 0 calc(-1 * var(--space-xl));
+    gap: 16px;
+    padding-bottom: 8px;
   }
   .trainers-grid::-webkit-scrollbar { display: none; }
   .trainers-grid > * {
-    min-width: 75vw;
+    min-width: 70vw;
+    max-width: 280px;
     flex-shrink: 0;
     scroll-snap-align: start;
   }
+
+  /* ── Testimonials: horizontal swipe carousel ── */
+  .testimonials-grid {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 16px;
+    padding-bottom: 8px;
+  }
+  .testimonials-grid::-webkit-scrollbar { display: none; }
+  .testimonials-grid > * {
+    min-width: 78vw;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  /* ── Blog: horizontal swipe carousel ── */
+  .blog-grid {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 16px;
+    padding-bottom: 8px;
+  }
+  .blog-grid::-webkit-scrollbar { display: none; }
+  .blog-grid > * {
+    min-width: 78vw;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
   .stats-row { grid-template-columns: 1fr 1fr; }
   .macro-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-brand { grid-column: 1; }
   .footer-bottom { flex-direction: column; gap: var(--space-lg); text-align: center; }
-  .display-hero { font-size: 56px; }
-  /* Tighter padding on very small screens */
+  .display-hero { font-size: 48px; }
+  .heading-xl { font-size: clamp(32px, 8vw, 48px); }
   .trainer-hero-content { padding: 40px var(--space-xl); }
-  /* Services wrap without excess gap */
   .service-card { padding: var(--space-xl); }
+  .section-header-row { flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
 
-  /* ── Catch-all: collapse 3-col and 2-col inline-style grids ── */
+  /* ── Catch-all: collapse inline-style grids ── */
   [style*="grid-template-columns:1fr 1fr 1fr"],
   [style*="grid-template-columns:repeat(3,1fr"],
   [style*="grid-template-columns:repeat(3, 1fr"],
@@ -1448,57 +1458,6 @@ ul, ol { list-style: none; }
   [style*="grid-template-columns:repeat(2,1fr"] {
     grid-template-columns: 1fr !important;
     height: auto !important;
-  }
-  /* Reduce large display font on very small phones */
-  .display-hero { font-size: 48px; }
-  .heading-xl { font-size: clamp(32px, 8vw, 48px); }
-
-  /* Swipe hint label for carousels */
-  .goals-grid::after,
-  .products-grid::after,
-  .trainers-grid::after {
-    content: '';
-    min-width: var(--space-xl);
-    flex-shrink: 0;
-  }
-
-  /* Section header row — stack on mobile */
-  .section-header-row { flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
-
-  /* Testimonials as horizontal scroll */
-  .testimonials-grid {
-    display: flex !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 12px;
-    padding: 0 var(--space-xl) var(--space-xl);
-    margin: 0 calc(-1 * var(--space-xl));
-  }
-  .testimonials-grid::-webkit-scrollbar { display: none; }
-  .testimonials-grid > * {
-    min-width: 82vw;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-
-  /* Blog grid — horizontal scroll */
-  .blog-grid {
-    display: flex !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 12px;
-    padding: 0 var(--space-xl) var(--space-xl);
-    margin: 0 calc(-1 * var(--space-xl));
-  }
-  .blog-grid::-webkit-scrollbar { display: none; }
-  .blog-grid > * {
-    min-width: 82vw;
-    flex-shrink: 0;
-    scroll-snap-align: start;
   }
 }
 
