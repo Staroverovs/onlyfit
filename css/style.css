@@ -1339,8 +1339,17 @@ ul, ol { list-style: none; }
   .section { padding: 40px 0; }
   .section-lg { padding: 48px 0; }
 
-  /* Nav */
-  .primary-nav { padding: 0 16px; }
+  /* Nav — fixed on mobile, always visible */
+  .primary-nav {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 16px;
+    z-index: 200;
+  }
+  /* Push page content below fixed nav */
+  body { padding-top: var(--nav-h); }
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
   .utility-bar { display: none; }
