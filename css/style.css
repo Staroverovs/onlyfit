@@ -167,12 +167,11 @@
   z-index: 2;
   pointer-events: none;
 }
-/* Dark gradient under text — always on */
-.photo-editorial:first-child::after {
-  content: '';
+/* Dark gradient under text — real element, always reliable */
+.photo-editorial-grad {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 45%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 40%, transparent 75%);
   pointer-events: none;
   z-index: 1;
 }
@@ -1388,17 +1387,10 @@ ul, ol { list-style: none; }
   .editorial-strip { display: block; }
   .editorial-strip > * { height: 360px; width: 100%; }
   .editorial-strip > *:not(:first-child) { display: none; }
-  .photo-editorial:first-child::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
-    pointer-events: none;
-  }
   .photo-editorial-text {
     bottom: 24px;
-    font-size: 28px !important;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.9) !important;
+    font-size: 26px !important;
+    text-shadow: 0 3px 20px rgba(0,0,0,0.95) !important;
   }
 
   /* Campaign — compact on mobile */
