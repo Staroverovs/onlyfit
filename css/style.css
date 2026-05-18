@@ -1384,9 +1384,20 @@ ul, ol { list-style: none; }
   .goal-title { font-size: 24px; }
 
   /* Editorial strip — single full-width photo on mobile */
-  .editorial-strip { display: block; }
-  .editorial-strip > * { height: 360px; width: 100%; }
-  .editorial-strip > *:not(:first-child) { display: none; }
+  .editorial-strip {
+    display: block !important;
+    grid-template-columns: unset !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    gap: 0 !important;
+  }
+  .editorial-strip > * { display: none !important; }
+  .editorial-strip > *:first-child {
+    display: block !important;
+    width: 100% !important;
+    height: 360px !important;
+  }
   .photo-editorial-text {
     bottom: 24px;
     font-size: 26px !important;
