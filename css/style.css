@@ -624,6 +624,11 @@ ul, ol { list-style: none; }
   max-width: 420px;
   margin-bottom: var(--space-xl);
 }
+.campaign-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
 /* ─── TRUST BLOCK ─────────────────────────────────────── */
 .trust-row {
@@ -1370,9 +1375,9 @@ ul, ol { list-style: none; }
   }
   .goal-title { font-size: 24px; }
 
-  /* Editorial strip — show only first photo on mobile */
-  .editorial-strip { grid-template-columns: 1fr; height: auto; }
-  .editorial-strip > * { height: 380px; }
+  /* Editorial strip — single full-width photo on mobile */
+  .editorial-strip { display: block; }
+  .editorial-strip > * { height: 360px; width: 100%; }
   .editorial-strip > *:not(:first-child) { display: none; }
   .photo-editorial:first-child::after {
     content: '';
@@ -1386,6 +1391,12 @@ ul, ol { list-style: none; }
     font-size: 28px !important;
     text-shadow: 0 2px 16px rgba(0,0,0,0.9) !important;
   }
+
+  /* Campaign — compact on mobile */
+  .campaign-tile { min-height: auto !important; }
+  .campaign-tile .container { padding-top: 48px !important; padding-bottom: 48px !important; }
+  .campaign-actions { flex-direction: column; }
+  .campaign-actions .btn { justify-content: center; text-align: center; }
 
   /* Trainers — 2 columns */
   .trainers-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
