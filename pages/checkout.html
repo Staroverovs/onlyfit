@@ -18,45 +18,58 @@
   </defs>
 </svg>
 
-<!-- UTILITY BAR -->
-<div class="utility-bar">
-  <a href="calculator.html">Калькулятор КБЖУ</a>
-  <a href="test-rpp.html">Тест РПП</a>
-  <a href="https://t.me/onlyfit" target="_blank">Telegram</a>
-  <a href="#">Instagram</a>
-</div>
+<!-- ═══ FLOATING MENU ═══════════════════════════════════════════ -->
+<nav class="menu dark" id="menu">
+  <a href="../index.html" class="menu-logo" aria-label="OnlyFit">OF</a>
 
-<!-- PRIMARY NAV -->
-<nav class="primary-nav">
-  <a href="../index.html" class="nav-logo">ONLYFIT</a>
-  <div class="nav-links">
-    <a href="trainers.html">Тренеры</a>
-    <a href="products.html">Продукты</a>
-    <a href="calculator.html">Калькулятор</a>
-    <a href="test-rpp.html">Тест РПП</a>
-    <a href="eleonora.html">Элеонора</a>
-    <a href="blog.html">Блог</a>
+  <div class="menu-nav">
+    <ul class="nav-list">
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">01</span>
+        <a href="trainers.html" class="nav-list-item-link">Тренеры</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">02</span>
+        <a href="products.html" class="nav-list-item-link">Продукты</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">03</span>
+        <a href="calculator.html" class="nav-list-item-link">Калькулятор</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">04</span>
+        <a href="test-rpp.html" class="nav-list-item-link">Тест РПП</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">05</span>
+        <a href="blog.html" class="nav-list-item-link">Блог</a>
+      </li>
+    </ul>
   </div>
-  <div class="nav-cta">
-    <a href="eleonora.html#services" class="btn btn-primary btn-sm">Записаться</a>
-  </div>
-  <div class="hamburger"><span></span><span></span><span></span></div>
+
+  <button class="menu-burger" id="burger" aria-label="Меню">
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
-<div class="mobile-nav-overlay">
-  <span class="mobile-nav-close">✕</span>
-  <div class="mobile-nav-links">
-    <a href="trainers.html">Тренеры</a>
-    <a href="products.html">Продукты</a>
-    <a href="calculator.html">Калькулятор</a>
-    <a href="test-rpp.html">Тест РПП</a>
-    <a href="eleonora.html">Элеонора</a>
-    <a href="blog.html">Блог</a>
+<!-- Mobile overlay -->
+<div class="mobile-overlay" id="mobileOverlay">
+  <nav class="mobile-overlay-links">
+    <a href="trainers.html"><span class="idx">01</span>Тренеры</a>
+    <a href="products.html"><span class="idx">02</span>Продукты</a>
+    <a href="calculator.html"><span class="idx">03</span>Калькулятор</a>
+    <a href="test-rpp.html"><span class="idx">04</span>Тест РПП</a>
+    <a href="eleonora.html"><span class="idx">05</span>Элеонора</a>
+    <a href="blog.html"><span class="idx">06</span>Блог</a>
+  </nav>
+  <div class="mobile-cta">
+    <a href="eleonora.html#services" class="btn btn-ghost-inv btn-lg" style="width:100%;justify-content:center">Записаться →</a>
   </div>
 </div>
 
 <!-- CHECKOUT -->
-<section class="section-lg" style="background:var(--canvas)">
+<section class="section-lg" data-theme="light" style="background:var(--canvas)">
   <div class="container">
 
     <div class="breadcrumb" style="margin-bottom:var(--space-xl)">

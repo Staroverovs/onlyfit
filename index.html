@@ -8,132 +8,97 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- SVG SPRITE -->
 <svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute;overflow:hidden" aria-hidden="true">
   <defs>
-    <!-- Goals -->
     <g id="icon-fire"><path d="M12 2C9 7 4 10 4 14a8 8 0 0 0 16 0c0-4-5-7-8-12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
     <g id="icon-muscle"><path d="M18 6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h1l1 4-2 4H6l-2 4h2.5L8 18l2 4h1.5L10 16l2-4 2 4-1.5 6H14l2-4 1.5-2H20l-2-4h-2l-2-4 1-4h1a2 2 0 0 0 2-2v0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
-    <g id="icon-flower"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v5"/><path d="M12 17v5"/><path d="M4.93 4.93l3.54 3.54"/><path d="M15.53 15.53l3.54 3.54"/><path d="M2 12h5"/><path d="M17 12h5"/><path d="M4.93 19.07l3.54-3.54"/><path d="M15.53 8.47l3.54-3.54"/></g></g>
+    <g id="icon-flower"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5M12 17v5M4.93 4.93l3.54 3.54M15.53 15.53l3.54 3.54M2 12h5M17 12h5M4.93 19.07l3.54-3.54M15.53 8.47l3.54-3.54" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
     <g id="icon-bolt"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
-
-    <!-- Products -->
     <g id="icon-book"><path d="M4 6h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h16V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v16" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
     <g id="icon-play"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></g>
     <g id="icon-chart"><path d="M4 20V10m8 10V4m8 16v-8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
-    <g id="icon-document"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-heart"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-run"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 22l2-7 3 3 3-5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 13l-3 2v3" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-gift"><rect x="3" y="6" width="18" height="5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v15M3 11h18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6H9.5a2.5 2.5 0 0 1 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6h2.5a2.5 2.5 0 0 0 0-5C12 1 12 6 12 6z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-
-    <!-- Services -->
-    <g id="icon-chat"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-rocket"><path d="M12 15l-3-3m3 3a22 22 0 0 1 4-7m-4 7a22 22 0 0 0-4-7m4 7l3-3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
-    <g id="icon-watch"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-layers"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
-    <g id="icon-star"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
-
-    <!-- Trust -->
-    <g id="icon-science"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-cert"><path d="M12 2L2 7l10 5 10-5-10-5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
-    <g id="icon-hands"><path d="M7 11V7a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M17 11V7a4 4 0 0 0-4-4v0a4 4 0 0 0-4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-medical"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
-
-    <!-- Security -->
-    <g id="icon-lock"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-infinity"><path d="M9.5 8a5 5 0 1 0 4.96 6M14.5 16a5 5 0 1 0-4.96-6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-
-    <!-- Misc -->
     <g id="icon-target"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></g>
-    <g id="icon-clipboard"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 3V1h6v2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6m-6 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
-    <g id="icon-calculator"><rect x="3" y="2" width="18" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h10M7 12h4m3 0h4m-11 4h4m3 0h4m-11 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
     <g id="icon-brain"><path d="M12 2A4 4 0 0 0 8 6c0 2 2 3 2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 11A5 5 0 0 0 3 15v2a2 2 0 0 0 2 2h1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 11a5 5 0 0 1 5 4v2a2 2 0 0 1-2 2h-1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v8" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-droplet"><path d="M12 2L6 12a6 6 0 0 0 12 0L12 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
-    <g id="icon-printer"><rect x="6" y="8" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 12H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4V2h8v2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-warning"><path d="M12 2L2 22h20L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 10v4m0 4h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
-    <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-globe"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-cycle"><path d="M1 4v6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 15a9 9 0 1 0 2.2-9.7L1 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
-    <g id="icon-utensils"><circle cx="7" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 11v11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 3v18" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 3h6v4a3 3 0 0 1-3 3v0a3 3 0 0 1-3-3V3z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
-    <g id="icon-check-circle"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
-    <g id="icon-check"><path d="M5 12l4 4L19 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
-    <g id="icon-close"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
-
-    <!-- Social -->
+    <g id="icon-calculator"><rect x="3" y="2" width="18" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h10M7 12h4m3 0h4m-11 4h4m3 0h4m-11 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-clipboard"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 3V1h6v2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6m-6 4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+    <g id="icon-science"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-cert"><path d="M12 2L2 7l10 5 10-5-10-5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+    <g id="icon-hands"><path d="M7 11V7a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+    <g id="icon-medical"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
     <g id="icon-telegram"><path d="M21.5 3.5 2 11l7.5 2.5L13 21Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
     <g id="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="1" fill="currentColor"/></g>
     <g id="icon-youtube"><path d="M22.5 7.5a2.5 2.5 0 0 0-2.5-2.5H4A2.5 2.5 0 0 0 1.5 7.5v9A2.5 2.5 0 0 0 4 19h16a2.5 2.5 0 0 0 2.5-2.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="currentColor"/></g>
-    <g id="icon-vk"><path d="M21.5 2.5h-19v19h19v-19Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 16c-4 0-6-3-6-6s2-6 6-6 6 3 6 6-2 6-6 6Z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">B</text></g>
-
-    <!-- Arrow -->
+    <g id="icon-vk"><rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" font-family="sans-serif">ВК</text></g>
     <g id="icon-arrow-right"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="icon-chevron-down"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
   </defs>
 </svg>
 
-<!-- SVG sprite loaded externally via use -->
+<!-- ═══ FLOATING MENU ═══════════════════════════════════════════ -->
+<nav class="menu dark" id="menu">
+  <a href="index.html" class="menu-logo" aria-label="OnlyFit">OF</a>
 
-<!-- UTILITY BAR -->
-<div class="utility-bar">
-  <a href="pages/calculator.html">Калькулятор КБЖУ</a>
-  <a href="pages/test-rpp.html">Тест РПП</a>
-  <a href="https://t.me/onlyfit" target="_blank">Telegram</a>
-  <a href="#">Instagram</a>
-  <a href="#">Написать нам</a>
-</div>
+  <div class="menu-nav">
+    <ul class="nav-list">
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">01</span>
+        <a href="pages/trainers.html" class="nav-list-item-link">Тренеры</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">02</span>
+        <a href="pages/products.html" class="nav-list-item-link">Продукты</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">03</span>
+        <a href="pages/calculator.html" class="nav-list-item-link">Калькулятор</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">04</span>
+        <a href="pages/test-rpp.html" class="nav-list-item-link">Тест РПП</a>
+      </li>
+      <li class="nav-list-item">
+        <span class="nav-list-item-index">05</span>
+        <a href="pages/blog.html" class="nav-list-item-link">Блог</a>
+      </li>
+    </ul>
+  </div>
 
-<!-- PRIMARY NAV -->
-<nav class="primary-nav">
-  <a href="index.html" class="nav-logo">ONLYFIT</a>
-  <div class="nav-links">
-    <a href="pages/trainers.html">Тренеры</a>
-    <a href="pages/products.html">Продукты</a>
-    <a href="pages/calculator.html">Калькулятор</a>
-    <a href="pages/test-rpp.html">Тест РПП</a>
-    <a href="pages/eleonora.html">Элеонора</a>
-    <a href="pages/blog.html">Блог</a>
-  </div>
-  <div class="nav-cta">
-    <a href="pages/eleonora.html#services" class="btn btn-primary btn-sm">Записаться</a>
-  </div>
-  <div class="hamburger" aria-label="Меню">
-    <span></span><span></span><span></span>
-  </div>
+  <button class="menu-burger" id="burger" aria-label="Меню">
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav-overlay">
-  <span class="mobile-nav-close">✕</span>
-  <div class="mobile-nav-links">
-    <a href="pages/trainers.html">Тренеры</a>
-    <a href="pages/products.html">Продукты</a>
-    <a href="pages/calculator.html">Калькулятор</a>
-    <a href="pages/test-rpp.html">Тест РПП</a>
-    <a href="pages/eleonora.html">Элеонора</a>
-    <a href="pages/blog.html">Блог</a>
+<!-- Mobile overlay -->
+<div class="mobile-overlay" id="mobileOverlay">
+  <nav class="mobile-overlay-links">
+    <a href="pages/trainers.html"><span class="idx">01</span>Тренеры</a>
+    <a href="pages/products.html"><span class="idx">02</span>Продукты</a>
+    <a href="pages/calculator.html"><span class="idx">03</span>Калькулятор</a>
+    <a href="pages/test-rpp.html"><span class="idx">04</span>Тест РПП</a>
+    <a href="pages/eleonora.html"><span class="idx">05</span>Элеонора</a>
+    <a href="pages/blog.html"><span class="idx">06</span>Блог</a>
+  </nav>
+  <div class="mobile-cta">
+    <a href="pages/eleonora.html#services" class="btn btn-ghost-inv btn-lg" style="width:100%;justify-content:center">Записаться →</a>
   </div>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-bg-accent"></div>
-  <!-- Hero photo -->
-  <div class="photo-hero">
+<!-- ═══ HERO ════════════════════════════════════════════════════ -->
+<section class="hero" data-theme="dark">
+  <div class="hero-media">
     <img src="materials_photo/IMG_7136.JPG" alt="Элеонора Шехтерле">
   </div>
-  <div class="hero-content" style="position:relative;z-index:2">
-    <div class="hero-tag fade-up">OnlyFit · Доказательный подход</div>
-    <div class="hero-headline">
-      <div class="display-hero fade-up delay-1">МЕНЯЙ</div>
-      <div class="display-hero fade-up delay-2" style="color:rgba(255,255,255,0.2)">ПРАВИЛА</div>
-      <div class="display-hero fade-up delay-3" style="color:var(--accent-teal)">ИГРЫ</div>
-    </div>
-    <p class="hero-sub fade-up" style="animation-delay:0.4s">
-      Соберите питание и тренировки так, чтобы у вас было больше сил, меньше хаоса и понятный путь к цели. Без стыда. Без быстрых чудес.
-    </p>
-    <div class="hero-actions fade-up" style="animation-delay:0.5s">
-      <a href="pages/calculator.html" class="btn btn-primary btn-lg">Рассчитать КБЖУ</a>
-      <a href="pages/eleonora.html" class="btn btn-outline-white btn-lg">Познакомиться с командой</a>
+
+  <div class="hero-body">
+    <div class="hero-tag">OnlyFit · Доказательный подход</div>
+    <h1 class="hero-title">МЕНЯЙ<br>ПРАВИЛА<br>ИГРЫ</h1>
+    <p class="hero-sub">Соберите питание и тренировки так, чтобы у вас было больше сил, меньше хаоса и понятный путь к цели. Без стыда. Без быстрых чудес.</p>
+    <div class="hero-actions">
+      <a href="pages/calculator.html" class="btn btn-inv btn-lg">Рассчитать КБЖУ</a>
+      <a href="pages/eleonora.html" class="btn btn-ghost-inv btn-lg">Наша команда</a>
     </div>
   </div>
 
@@ -153,362 +118,367 @@
   </div>
 </section>
 
-<!-- GOALS -->
-<section style="background:var(--ink)">
-  <div class="goals-grid">
+<!-- ═══ GOALS ═══════════════════════════════════════════════════ -->
+<section data-theme="dark">
+  <div class="goals-grid stagger-children">
 
     <a href="pages/calculator.html" class="goal-tile">
-      <div class="goal-tile-bg goal-bg-1"></div>
+      <div class="goal-tile-img goal-bg-1"></div>
       <div class="goal-tile-overlay">
-        <div class="goal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-fire"/></svg></div>
+        <div class="goal-icon"><svg viewBox="0 0 24 24"><use href="#icon-fire"/></svg></div>
         <div class="goal-title">Снижение веса</div>
         <div class="goal-desc">Дефицит без голода, работа с привычками</div>
-        <span class="btn btn-outline-white btn-sm">Начать →</span>
+        <span class="goal-link">Начать →</span>
       </div>
     </a>
 
     <a href="pages/calculator.html" class="goal-tile">
-      <div class="goal-tile-bg goal-bg-2"></div>
+      <div class="goal-tile-img goal-bg-2"></div>
       <div class="goal-tile-overlay">
-        <div class="goal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-muscle"/></svg></div>
+        <div class="goal-icon"><svg viewBox="0 0 24 24"><use href="#icon-muscle"/></svg></div>
         <div class="goal-title">Набор массы</div>
         <div class="goal-desc">Профицит, белок, прогрессия нагрузок</div>
-        <span class="btn btn-outline-white btn-sm">Начать →</span>
+        <span class="goal-link">Начать →</span>
       </div>
     </a>
 
     <a href="pages/trainers.html" class="goal-tile">
-      <div class="goal-tile-bg goal-bg-3"></div>
+      <div class="goal-tile-img goal-bg-3"></div>
       <div class="goal-tile-overlay">
-        <div class="goal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-flower"/></svg></div>
+        <div class="goal-icon"><svg viewBox="0 0 24 24"><use href="#icon-flower"/></svg></div>
         <div class="goal-title">Женское здоровье</div>
         <div class="goal-desc">Гормоны, цикл, беременность, менопауза</div>
-        <span class="btn btn-outline-white btn-sm">Начать →</span>
+        <span class="goal-link">Начать →</span>
       </div>
     </a>
 
     <a href="pages/test-rpp.html" class="goal-tile">
-      <div class="goal-tile-bg goal-bg-4"></div>
+      <div class="goal-tile-img goal-bg-4"></div>
       <div class="goal-tile-overlay">
-        <div class="goal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-bolt"/></svg></div>
+        <div class="goal-icon"><svg viewBox="0 0 24 24"><use href="#icon-bolt"/></svg></div>
         <div class="goal-title">Энергия и дисциплина</div>
         <div class="goal-desc">Привычки, восстановление, ментальное здоровье</div>
-        <span class="btn btn-outline-white btn-sm">Начать →</span>
+        <span class="goal-link">Начать →</span>
       </div>
     </a>
 
   </div>
 </section>
 
-<!-- STATS -->
-<section class="section" style="background:var(--canvas)">
-  <div class="stats-row">
-    <div class="stat-item">
+<!-- ═══ STATS ════════════════════════════════════════════════════ -->
+<section data-theme="light">
+  <div class="stats-band stagger-children">
+    <div class="stat-cell">
       <div class="stat-num">500+</div>
       <div class="stat-label">довольных клиентов</div>
     </div>
-    <div class="stat-item">
+    <div class="stat-cell">
       <div class="stat-num">94%</div>
       <div class="stat-label">достигают цели</div>
     </div>
-    <div class="stat-item">
+    <div class="stat-cell">
       <div class="stat-num">10+</div>
       <div class="stat-label">лет суммарного опыта</div>
     </div>
-    <div class="stat-item">
+    <div class="stat-cell">
       <div class="stat-num">4.9★</div>
       <div class="stat-label">средний рейтинг</div>
     </div>
   </div>
 </section>
 
-<!-- ELEONORA CAMPAIGN -->
-<section style="overflow:hidden">
-  <div class="campaign-tile" style="min-height:70vh">
-    <div class="campaign-bg" style="background:linear-gradient(120deg,#0a1a1a 0%,#0a2a2a 60%,#0a1a0a 100%)"></div>
-    <div class="photo-campaign">
-      <img src="materials_photo/IMG_7143.JPG" alt="Элеонора Шехтерле">
+<!-- ═══ ELEONORA CAMPAIGN ════════════════════════════════════════ -->
+<section class="campaign" data-theme="dark">
+  <div class="campaign-photo">
+    <img src="materials_photo/IMG_7143.JPG" alt="Элеонора Шехтерле">
+  </div>
+  <div class="campaign-body">
+    <div class="campaign-tag">Главный тренер</div>
+    <h2 class="campaign-title observe-fade">ЭЛЕОНОРА<br>ШЕХТЕРЛЕ</h2>
+    <p class="campaign-desc observe-fade">Дипломированный тренер и нутрициолог. В практике с 2018 года. Прошла путь от восстановления после родов и −20 кг до чемпионства. Более 500 клиентов.</p>
+    <div class="campaign-tags">
+      <span class="tag">Нутрициология</span>
+      <span class="tag">Функциональный фитнес</span>
+      <span class="tag">РПП</span>
+      <span class="tag">Body Neutrality</span>
     </div>
-    <div class="container" style="position:relative;z-index:1;padding-top:80px;padding-bottom:80px">
-      <div style="color:var(--accent-teal);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px">
-        Главный тренер
-      </div>
-      <div class="campaign-headline">
-        ЭЛЕОНОРА<br>ШЕХТЕРЛЕ
-      </div>
-      <p class="campaign-sub">
-        Дипломированный тренер и нутрициолог. В практике с 2018 года. Прошла путь от восстановления после родов и −20 кг до чемпионства. Более 500 клиентов.
-      </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px">
-        <span class="label-tag teal">Нутрициология</span>
-        <span class="label-tag teal">Функциональный фитнес</span>
-        <span class="label-tag teal">РПП</span>
-        <span class="label-tag teal">Body Neutrality</span>
-      </div>
-      <div class="campaign-actions">
-        <a href="pages/eleonora.html" class="btn btn-primary">Профиль Элеоноры</a>
-        <a href="pages/eleonora.html#services" class="btn btn-outline-white">Услуги и цены</a>
-      </div>
+    <div class="campaign-actions observe-fade">
+      <a href="pages/eleonora.html" class="btn btn-inv">Профиль Элеоноры</a>
+      <a href="pages/eleonora.html#services" class="btn btn-ghost-inv">Услуги и цены</a>
     </div>
   </div>
 </section>
 
-<!-- EDITORIAL PHOTO STRIP -->
-<section style="background:var(--canvas);overflow:hidden">
-  <div class="editorial-strip">
-    <div class="photo-editorial">
-      <div class="photo-editorial-img-wrap">
-        <img src="materials_photo/IMG_7139.JPG" alt="Элеонора Шехтерле">
-      </div>
-      <div class="photo-editorial-grad"></div>
-      <div class="photo-editorial-text" style="font-family:var(--font-display);font-size:clamp(22px,4vw,52px);line-height:0.92;color:#fff;text-transform:uppercase;text-shadow:0 3px 24px rgba(0,0,0,0.95)">Доказательность<br>в каждом шаге</div>
-    </div>
-    <div class="photo-editorial">
-      <div class="photo-editorial-img-wrap">
-        <img src="materials_photo/IMG_7142.JPG" alt="Элеонора Шехтерле">
-      </div>
-    </div>
-    <div class="photo-editorial">
-      <div class="photo-editorial-img-wrap">
-        <img src="materials_photo/IMG_7144.JPG" alt="Элеонора Шехтерле">
-      </div>
+<!-- ═══ EDITORIAL STRIP ══════════════════════════════════════════ -->
+<div class="editorial-strip" data-theme="light">
+  <div class="editorial-cell">
+    <img src="materials_photo/IMG_7139.JPG" alt="Элеонора Шехтерле">
+    <div class="editorial-grad"></div>
+    <div class="editorial-text">
+      <div class="editorial-label">Доказательность<br>в каждом шаге</div>
     </div>
   </div>
-</section>
+  <div class="editorial-cell">
+    <img src="materials_photo/IMG_7142.JPG" alt="Элеонора Шехтерле">
+  </div>
+  <div class="editorial-cell">
+    <img src="materials_photo/IMG_7144.JPG" alt="Элеонора Шехтерле">
+  </div>
+</div>
 
-<!-- TRAINERS SECTION -->
-<section class="section-lg" style="background:var(--canvas)">
-  <div class="container">
-    <div class="section-header-row">
-      <div>
-        <div class="overline mb-md">Наша команда</div>
-        <h2 class="heading-xl">ТРЕНЕРЫ</h2>
+<!-- ═══ TRAINERS ═════════════════════════════════════════════════ -->
+<section class="section-lg bg-light" data-theme="light">
+  <div class="wrap">
+    <div class="sec-head observe-fade">
+      <div class="sec-head-left">
+        <div class="sec-title-row">
+          <span class="section-num">2.0</span>
+          <h2 class="heading-xl">ТРЕНЕРЫ</h2>
+        </div>
+        <p class="body-md" style="opacity:0.5;max-width:400px">Сертифицированные эксперты с доказательным подходом</p>
       </div>
-      <a href="pages/trainers.html" class="btn btn-secondary">Все тренеры</a>
+      <a href="pages/trainers.html" class="btn btn-ghost">Все тренеры</a>
     </div>
-    <div class="trainers-grid">
+
+    <div class="trainers-grid stagger-children">
 
       <a href="pages/eleonora.html" class="trainer-card">
-        <div class="photo-avatar">
+        <div class="trainer-photo">
           <img src="materials_photo/IMG_7137.JPG" alt="Элеонора Шехтерле">
         </div>
         <div class="trainer-name">Элеонора Шехтерле</div>
         <div class="trainer-role">Главный тренер · Нутрициолог</div>
         <div class="trainer-tags">
-          <span class="label-tag teal">Нутрициология</span>
-          <span class="label-tag">Фитнес</span>
+          <span class="tag light">Нутрициология</span>
+          <span class="tag light">Фитнес</span>
         </div>
-        <span class="btn btn-secondary btn-sm w-full" style="justify-content:center">Профиль →</span>
+        <span class="trainer-link">Профиль →</span>
       </a>
 
       <a href="pages/trainers.html#maria" class="trainer-card">
-        <div class="trainer-avatar trainer-grad-2">
-          <div class="trainer-avatar-placeholder">
+        <div class="trainer-photo trainer-grad-2">
+          <div class="trainer-placeholder">
             <span class="trainer-initials">МС</span>
           </div>
         </div>
         <div class="trainer-name">Мария Соколова</div>
         <div class="trainer-role">Тренер · Женское здоровье</div>
         <div class="trainer-tags">
-          <span class="label-tag pink">Йога</span>
-          <span class="label-tag">Гормоны</span>
+          <span class="tag light">Йога</span>
+          <span class="tag light">Гормоны</span>
         </div>
-        <span class="btn btn-secondary btn-sm w-full" style="justify-content:center">Профиль →</span>
+        <span class="trainer-link">Профиль →</span>
       </a>
 
       <a href="pages/trainers.html#dmitry" class="trainer-card">
-        <div class="trainer-avatar trainer-grad-3">
-          <div class="trainer-avatar-placeholder">
+        <div class="trainer-photo trainer-grad-3">
+          <div class="trainer-placeholder">
             <span class="trainer-initials">ДВ</span>
           </div>
         </div>
         <div class="trainer-name">Дмитрий Волков</div>
         <div class="trainer-role">Силовой тренер</div>
         <div class="trainer-tags">
-          <span class="label-tag">Сила</span>
-          <span class="label-tag">Масса</span>
+          <span class="tag light">Сила</span>
+          <span class="tag light">Масса</span>
         </div>
-        <span class="btn btn-secondary btn-sm w-full" style="justify-content:center">Профиль →</span>
+        <span class="trainer-link">Профиль →</span>
       </a>
 
       <a href="pages/trainers.html#karina" class="trainer-card">
-        <div class="trainer-avatar trainer-grad-4">
-          <div class="trainer-avatar-placeholder">
+        <div class="trainer-photo trainer-grad-4">
+          <div class="trainer-placeholder">
             <span class="trainer-initials">КА</span>
           </div>
         </div>
         <div class="trainer-name">Карина Александрова</div>
         <div class="trainer-role">Психолог · РПП-специалист</div>
         <div class="trainer-tags">
-          <span class="label-tag success">Психология</span>
-          <span class="label-tag">РПП</span>
+          <span class="tag light">Психология</span>
+          <span class="tag light">РПП</span>
         </div>
-        <span class="btn btn-secondary btn-sm w-full" style="justify-content:center">Профиль →</span>
+        <span class="trainer-link">Профиль →</span>
       </a>
 
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS SECTION -->
-<section class="section-lg" style="background:var(--soft-cloud)">
-  <div class="container">
-    <div class="section-header-row">
-      <div>
-        <div class="overline mb-md">Цифровые продукты</div>
-        <h2 class="heading-xl">КУРСЫ<br>&amp; ГАЙДЫ</h2>
+<!-- ═══ PRODUCTS ══════════════════════════════════════════════════ -->
+<section class="section-lg bg-alt" data-theme="light">
+  <div class="wrap">
+    <div class="sec-head observe-fade">
+      <div class="sec-head-left">
+        <div class="sec-title-row">
+          <span class="section-num">3.0</span>
+          <h2 class="heading-xl">КУРСЫ<br>&amp; ГАЙДЫ</h2>
+        </div>
+        <p class="body-md" style="opacity:0.5">Цифровые продукты от наших экспертов</p>
       </div>
-      <a href="pages/products.html" class="btn btn-secondary">Все продукты</a>
+      <a href="pages/products.html" class="btn btn-ghost">Все продукты</a>
     </div>
-    <div class="products-grid">
+
+    <div class="products-grid stagger-children">
 
       <div class="product-card">
         <div class="product-cover product-grad-1">
           <div class="product-cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-book"/></svg></div>
-          <div class="product-type-badge"><span class="label-tag">PDF-гайд</span></div>
+          <div class="product-badge"><span class="label-tag">PDF-гайд</span></div>
         </div>
         <div class="product-name">Питание без хаоса</div>
         <div class="product-author">Элеонора Шехтерле</div>
-        <div class="product-price">990 ₽ <span class="old-price">1 490 ₽</span><span class="discount">−34%</span></div>
-        <a href="pages/products.html" class="btn btn-primary w-full" style="justify-content:center">Купить</a>
+        <div class="product-price">990 ₽ <span class="old">1 490 ₽</span><span class="disc">−34%</span></div>
+        <a href="pages/products.html" class="btn btn-primary btn-full">Купить</a>
       </div>
 
       <div class="product-card">
         <div class="product-cover product-grad-2">
           <div class="product-cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-play"/></svg></div>
-          <div class="product-type-badge"><span class="label-tag pink">Видеокурс</span></div>
+          <div class="product-badge"><span class="label-tag pink">Видеокурс</span></div>
         </div>
         <div class="product-name">21-дневный протокол силы</div>
         <div class="product-author">Дмитрий Волков</div>
         <div class="product-price">2 490 ₽</div>
-        <a href="pages/products.html" class="btn btn-primary w-full" style="justify-content:center">Купить</a>
+        <a href="pages/products.html" class="btn btn-primary btn-full">Купить</a>
       </div>
 
       <div class="product-card">
         <div class="product-cover product-grad-3">
           <div class="product-cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-chart"/></svg></div>
-          <div class="product-type-badge"><span class="label-tag success">Презентация</span></div>
+          <div class="product-badge"><span class="label-tag success">Презентация</span></div>
         </div>
         <div class="product-name">Гормоны и питание</div>
         <div class="product-author">Мария Соколова</div>
         <div class="product-price">1 290 ₽</div>
-        <a href="pages/products.html" class="btn btn-primary w-full" style="justify-content:center">Купить</a>
+        <a href="pages/products.html" class="btn btn-primary btn-full">Купить</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- FREE MATERIALS -->
-<section class="section-lg" style="background:var(--canvas)">
-  <div class="container">
-    <div class="section-header-row">
-      <div>
-        <div class="overline mb-md">Скачайте бесплатно</div>
-        <h2 class="heading-xl">БЕСПЛАТНЫЕ<br>МАТЕРИАЛЫ</h2>
-      </div>
-      <a href="pages/products.html" class="btn btn-secondary">Все продукты</a>
-    </div>
-    <div class="grid-2" style="margin-top:var(--space-section)">
-      <a href="pages/products.html" class="free-material-card" style="text-decoration:none;color:inherit">
-        <div class="free-material-icon" style="background:#e6f4f1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px"><use href="#icon-target"/></svg>
+<!-- ═══ FREE MATERIALS ═══════════════════════════════════════════ -->
+<section class="section-lg bg-light" data-theme="light">
+  <div class="wrap">
+    <div class="sec-head observe-fade">
+      <div class="sec-head-left">
+        <div class="sec-title-row">
+          <span class="section-num">3.1</span>
+          <h2 class="heading-xl">БЕСПЛАТНО</h2>
         </div>
-        <div class="free-material-body">
-          <div class="free-material-title">10 шагов к идеальному телу</div>
-          <div class="free-material-meta">Элеонора Шехтерле · <span class="file-badge">PDF, 17.3 МБ</span></div>
-          <p style="font-size:14px;color:var(--mute)">Пошаговое руководство без жёстких диет. Чек-листы, план действий.</p>
+        <p class="body-md" style="opacity:0.5">Скачайте без регистрации</p>
+      </div>
+      <a href="pages/products.html" class="btn btn-ghost">Все материалы</a>
+    </div>
+
+    <div class="materials-grid stagger-children">
+      <a href="pages/products.html" class="material-card">
+        <div class="material-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-target"/></svg>
+        </div>
+        <div class="material-body">
+          <div class="material-title">10 шагов к идеальному телу</div>
+          <div class="material-meta">Элеонора Шехтерле · <span class="file-badge">PDF, 17.3 МБ</span></div>
+          <p class="material-desc">Пошаговое руководство без жёстких диет. Чек-листы, план действий.</p>
         </div>
       </a>
-      <a href="pages/products.html" class="free-material-card" style="text-decoration:none;color:inherit">
-        <div class="free-material-icon" style="background:#f4edff">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px"><use href="#icon-brain"/></svg>
+      <a href="pages/products.html" class="material-card">
+        <div class="material-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-brain"/></svg>
         </div>
-        <div class="free-material-body">
-          <div class="free-material-title">10 навыков саморегуляции</div>
-          <div class="free-material-meta">Карина Александрова · <span class="file-badge">PDF, 3.9 МБ</span></div>
-          <p style="font-size:14px;color:var(--mute)">Рабочая тетрадь: техники управления эмоциями и стрессом.</p>
+        <div class="material-body">
+          <div class="material-title">10 навыков саморегуляции</div>
+          <div class="material-meta">Карина Александрова · <span class="file-badge">PDF, 3.9 МБ</span></div>
+          <p class="material-desc">Рабочая тетрадь: техники управления эмоциями и стрессом.</p>
         </div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- QUIZ CTA SECTION -->
-<section class="section-lg section-dark">
-  <div class="container">
-    <div class="quiz-cta-grid">
-      <div>
-        <div class="overline mb-md" style="color:rgba(255,255,255,0.4)">Персональный маршрут</div>
-        <h2 class="heading-xl" style="color:var(--canvas);margin-bottom:24px">НЕ ЗНАЕШЬ<br>С ЧЕГО<br>НАЧАТЬ?</h2>
-        <p class="body-md mb-section" style="color:rgba(255,255,255,0.65)">
-          Пройдите квиз — 8 вопросов за 3 минуты. Получите персональный стартовый план, подходящую программу и первый шаг на ближайшие 24 часа.
+<!-- ═══ QUIZ CTA ══════════════════════════════════════════════════ -->
+<section class="section-lg bg-dark" data-theme="dark">
+  <div class="wrap">
+    <div class="quiz-cta">
+      <div class="observe-fade">
+        <div class="overline" style="color:rgba(255,255,255,0.35);margin-bottom:2.5rem">Персональный маршрут</div>
+        <h2 class="heading-xl" style="color:#fff;margin-bottom:2.5rem">НЕ ЗНАЕШЬ<br>С ЧЕГО<br>НАЧАТЬ?</h2>
+        <p class="body-lg" style="color:rgba(255,255,255,0.55);margin-bottom:4rem;max-width:440px">
+          Пройдите квиз — 8 вопросов за 3 минуты. Получите персональный стартовый план и первый шаг на ближайшие 24 часа.
         </p>
-        <a href="pages/calculator.html" class="btn btn-primary btn-lg">Пройти квиз</a>
+        <a href="pages/calculator.html" class="btn btn-inv btn-lg">Пройти квиз</a>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.08)">
-        <div style="background:var(--ink);padding:32px 24px">
-          <div style="font-family:var(--font-display);font-size:40px;color:var(--canvas);line-height:1;margin-bottom:8px">8</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5)">вопросов</div>
+      <div class="quiz-grid-mini stagger-children">
+        <div class="quiz-mini-cell">
+          <div class="quiz-mini-num">8</div>
+          <div class="quiz-mini-label">вопросов</div>
         </div>
-        <div style="background:var(--ink);padding:32px 24px">
-          <div style="font-family:var(--font-display);font-size:40px;color:var(--accent-teal);line-height:1;margin-bottom:8px">3</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5)">минуты</div>
+        <div class="quiz-mini-cell">
+          <div class="quiz-mini-num accent">3</div>
+          <div class="quiz-mini-label">минуты</div>
         </div>
-        <div style="background:var(--ink);padding:32px 24px">
-          <div style="width:28px;height:28px;margin-bottom:8px;color:var(--canvas)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:100%;height:100%"><use href="#icon-target"/></svg></div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5)">персональный результат</div>
+        <div class="quiz-mini-cell">
+          <div class="quiz-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-target"/></svg></div>
+          <div class="quiz-mini-label">персональный результат</div>
         </div>
-        <div style="background:var(--ink);padding:32px 24px">
-          <div style="width:28px;height:28px;margin-bottom:8px;color:var(--canvas)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:100%;height:100%"><use href="#icon-clipboard"/></svg></div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5)">стартовый план</div>
+        <div class="quiz-mini-cell">
+          <div class="quiz-mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-clipboard"/></svg></div>
+          <div class="quiz-mini-label">стартовый план</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST SIGNALS -->
-<section class="section-lg" style="background:var(--canvas)">
-  <div class="container">
-    <div class="overline mb-md text-center">Почему нам доверяют</div>
-    <h2 class="heading-xl text-center mb-section">ДОКАЗАТЕЛЬНЫЙ<br>ПОДХОД</h2>
-    <div class="trust-row">
+<!-- ═══ TRUST SIGNALS ════════════════════════════════════════════ -->
+<section class="section-lg bg-light" data-theme="light">
+  <div class="wrap">
+    <div class="observe-fade" style="margin-bottom:var(--sp-lg)">
+      <div class="sec-title-row">
+        <span class="section-num">4.0</span>
+        <h2 class="heading-xl">ДОКАЗАТЕЛЬНЫЙ<br>ПОДХОД</h2>
+      </div>
+    </div>
+    <div class="trust-grid stagger-children">
       <div class="trust-item">
         <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-science"/></svg></div>
         <div class="trust-title">Научная база</div>
-        <div class="trust-body">Все рекомендации опираются на исследования PubMed, ВОЗ и клинические рекомендации. Каждое утверждение — с источником.</div>
+        <p class="trust-body">Все рекомендации опираются на исследования PubMed, ВОЗ и клинические рекомендации. Каждое утверждение — с источником.</p>
       </div>
       <div class="trust-item">
         <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-cert"/></svg></div>
         <div class="trust-title">Дипломы и сертификаты</div>
-        <div class="trust-body">Наши эксперты — сертифицированные специалисты с профильным образованием и регулярным повышением квалификации.</div>
+        <p class="trust-body">Наши эксперты — сертифицированные специалисты с профильным образованием и регулярным повышением квалификации.</p>
       </div>
       <div class="trust-item">
         <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-hands"/></svg></div>
         <div class="trust-title">Без стыда</div>
-        <div class="trust-body">Body Neutrality и Self-Compassion — основа нашего подхода. Срыв — не конец, а информация для улучшения плана.</div>
+        <p class="trust-body">Body Neutrality и Self-Compassion — основа нашего подхода. Срыв — не конец, а информация для улучшения плана.</p>
       </div>
       <div class="trust-item">
         <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-medical"/></svg></div>
         <div class="trust-title">YMYL-ответственность</div>
-        <div class="trust-body">Мы работаем в нише здоровья и понимаем ответственность. Сложные темы проходят медицинское рецензирование.</div>
+        <p class="trust-body">Мы работаем в нише здоровья и понимаем ответственность. Сложные темы проходят медицинское рецензирование.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section-lg" style="background:var(--soft-cloud)">
-  <div class="container">
-    <div class="overline mb-md">Результаты клиентов</div>
-    <h2 class="heading-xl mb-section">РЕАЛЬНЫЕ<br>ИСТОРИИ</h2>
-    <div class="testimonials-grid">
+<!-- ═══ TESTIMONIALS ══════════════════════════════════════════════ -->
+<section class="section-lg bg-alt" data-theme="light">
+  <div class="wrap">
+    <div class="sec-head observe-fade">
+      <div class="sec-head-left">
+        <div class="sec-title-row">
+          <span class="section-num">5.0</span>
+          <h2 class="heading-xl">РЕАЛЬНЫЕ<br>ИСТОРИИ</h2>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials-grid stagger-children">
       <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">
-          "Я перепробовала кучу диет и каждый раз срывалась. Элеонора помогла понять, что дело не в дисциплине — дело в том, что план был слишком жёстким. Через 4 месяца я минус 8 кг, без голода и самобичевания."
-        </p>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Я перепробовала кучу диет и каждый раз срывалась. Элеонора помогла понять, что дело не в дисциплине — дело в том, что план был слишком жёстким. Через 4 месяца я минус 8 кг, без голода и самобичевания."</p>
         <div class="testimonial-meta">
           <div class="testimonial-avatar">АК</div>
           <div>
@@ -518,10 +488,8 @@
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">
-          "Обратился к Дмитрию с целью набрать массу. Дал чёткий план по питанию и тренингу. Через полгода +7 кг сухой массы. Никаких добавок-хлама, только базовая работа."
-        </p>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Обратился к Дмитрию с целью набрать массу. Дал чёткий план по питанию и тренингу. Через полгода +7 кг сухой массы. Никаких добавок-хлама, только базовая работа."</p>
         <div class="testimonial-meta">
           <div class="testimonial-avatar">МЛ</div>
           <div>
@@ -531,10 +499,8 @@
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">
-          "Тест РПП на сайте стал первым шагом — я поняла, что мои отношения с едой требуют внимания. Карина помогла разобраться. Впервые за годы я ем без тревоги."
-        </p>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Тест РПП на сайте стал первым шагом — я поняла, что мои отношения с едой требуют внимания. Карина помогла разобраться. Впервые за годы я ем без тревоги."</p>
         <div class="testimonial-meta">
           <div class="testimonial-avatar">ОН</div>
           <div>
@@ -547,99 +513,91 @@
   </div>
 </section>
 
-<!-- BLOG PREVIEW -->
-<section class="section-lg" style="background:var(--canvas)">
-  <div class="container">
-    <div class="section-header-row">
-      <div>
-        <div class="overline mb-md">Экспертный контент</div>
-        <h2 class="heading-xl">БЛОГ</h2>
+<!-- ═══ BLOG ══════════════════════════════════════════════════════ -->
+<section class="section-lg bg-light" data-theme="light">
+  <div class="wrap">
+    <div class="sec-head observe-fade">
+      <div class="sec-head-left">
+        <div class="sec-title-row">
+          <span class="section-num">6.0</span>
+          <h2 class="heading-xl">БЛОГ</h2>
+        </div>
+        <p class="body-md" style="opacity:0.5">Экспертный контент от наших тренеров</p>
       </div>
-      <a href="pages/blog.html" class="btn btn-secondary">Все статьи</a>
+      <a href="pages/blog.html" class="btn btn-ghost">Все статьи</a>
     </div>
-    <div class="blog-grid">
+    <div class="blog-grid stagger-children">
       <a href="pages/blog/deficit-kalorii.html" class="blog-card">
-        <div class="blog-card-cover">
+        <div class="blog-cover">
           <img src="materials_photo/IMG_7143.JPG" alt="Как дефицит калорий работает">
         </div>
-        <div class="blog-card-body">
-          <span class="blog-category cat-nutrition">Нутрициология</span>
-          <div class="blog-card-title">Как дефицит калорий работает на самом деле</div>
-          <p class="blog-card-excerpt">Почему тело сопротивляется похудению и как создать устойчивый дефицит без потери мышц.</p>
-          <div class="blog-card-meta">
-            <div class="blog-author-avatar"><img src="materials_photo/IMG_7136.JPG" alt=""></div>
-            <div class="blog-meta-text"><div class="blog-meta-author">Элеонора Шехтерле</div><div class="blog-meta-date">15 апреля 2025</div></div>
-            <span class="blog-meta-read">8 мин</span>
-          </div>
+        <span class="blog-category cat-nutrition">Нутрициология</span>
+        <div class="blog-title">Как дефицит калорий работает на самом деле</div>
+        <p class="blog-excerpt">Почему тело сопротивляется похудению и как создать устойчивый дефицит без потери мышц.</p>
+        <div class="blog-meta">
+          <div class="blog-author-av"><img src="materials_photo/IMG_7136.JPG" alt=""></div>
+          <span>Элеонора Шехтерле</span>
+          <span>15 апр 2025</span>
+          <span class="blog-read">8 мин</span>
         </div>
       </a>
       <a href="pages/blog/chto-takoe-rpp.html" class="blog-card">
-        <div class="blog-card-cover">
-          <div class="blog-card-cover-placeholder" style="background:linear-gradient(135deg,#fde8f3,#f9d0eb)">🧠</div>
+        <div class="blog-cover">
+          <div class="blog-cover-placeholder" style="background:linear-gradient(135deg,#fde8f3,#f9d0eb)">🧠</div>
         </div>
-        <div class="blog-card-body">
-          <span class="blog-category cat-psychology">Психология</span>
-          <div class="blog-card-title">Что такое РПП и как его распознать у себя</div>
-          <p class="blog-card-excerpt">Признаки, типы и когда стоит обратиться за поддержкой к специалисту.</p>
-          <div class="blog-card-meta">
-            <div class="blog-author-avatar-initial" style="background:#fde8f3;color:#b5157a">КА</div>
-            <div class="blog-meta-text"><div class="blog-meta-author">Карина Александрова</div><div class="blog-meta-date">2 марта 2025</div></div>
-            <span class="blog-meta-read">10 мин</span>
-          </div>
+        <span class="blog-category cat-psychology">Психология</span>
+        <div class="blog-title">Что такое РПП и как его распознать у себя</div>
+        <p class="blog-excerpt">Признаки, типы и когда стоит обратиться за поддержкой к специалисту.</p>
+        <div class="blog-meta">
+          <div class="blog-author-av-init">КА</div>
+          <span>Карина Александрова</span>
+          <span>2 мар 2025</span>
+          <span class="blog-read">10 мин</span>
         </div>
       </a>
       <a href="pages/blog/sryvy-normalno.html" class="blog-card">
-        <div class="blog-card-cover">
+        <div class="blog-cover">
           <img src="materials_photo/IMG_7144.JPG" alt="Почему срывы нормально">
         </div>
-        <div class="blog-card-body">
-          <span class="blog-category cat-psychology">Психология питания</span>
-          <div class="blog-card-title">Почему срывы — это нормально</div>
-          <p class="blog-card-excerpt">Чёрно-белое мышление мешает прогрессу. Как перестать войну с собой.</p>
-          <div class="blog-card-meta">
-            <div class="blog-author-avatar"><img src="materials_photo/IMG_7136.JPG" alt=""></div>
-            <div class="blog-meta-text"><div class="blog-meta-author">Элеонора Шехтерле</div><div class="blog-meta-date">20 ноября 2024</div></div>
-            <span class="blog-meta-read">6 мин</span>
-          </div>
+        <span class="blog-category cat-psychology">Психология питания</span>
+        <div class="blog-title">Почему срывы — это нормально</div>
+        <p class="blog-excerpt">Чёрно-белое мышление мешает прогрессу. Как перестать войну с собой.</p>
+        <div class="blog-meta">
+          <div class="blog-author-av"><img src="materials_photo/IMG_7136.JPG" alt=""></div>
+          <span>Элеонора Шехтерле</span>
+          <span>20 ноя 2024</span>
+          <span class="blog-read">6 мин</span>
         </div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- CALCULATOR & TEST CTA -->
-<section class="section" style="background:var(--canvas)">
-  <div class="container">
-    <div class="grid-2">
-      <div style="background:var(--soft-cloud);padding:var(--space-section)">
-        <div style="width:40px;height:40px;margin-bottom:var(--space-xl);color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:100%;height:100%"><use href="#icon-calculator"/></svg></div>
-        <h3 class="heading-lg mb-md">Калькулятор КБЖУ</h3>
-        <p style="font-size:15px;color:var(--mute);line-height:1.7;margin-bottom:var(--space-xl)">
-          Рассчитайте индивидуальную норму калорий, белков, жиров и углеводов по анкете. Учитываем цель, активность и особенности организма.
-        </p>
-        <a href="pages/calculator.html" class="btn btn-primary">Рассчитать →</a>
-      </div>
-      <div style="background:var(--ink);padding:var(--space-section);color:var(--canvas)">
-        <div style="width:40px;height:40px;margin-bottom:var(--space-xl);color:var(--canvas)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:100%;height:100%"><use href="#icon-brain"/></svg></div>
-        <h3 class="heading-lg mb-md" style="color:var(--canvas)">Тест на РПП</h3>
-        <p style="font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:var(--space-xl)">
-          Проверьте, как складываются ваши отношения с едой. Научно обоснованный скрининг с персональными рекомендациями.
-        </p>
-        <a href="pages/test-rpp.html" class="btn btn-outline-white">Пройти тест →</a>
-      </div>
+<!-- ═══ TOOLS CTA ═════════════════════════════════════════════════ -->
+<section data-theme="light">
+  <div class="tools-grid">
+    <div class="tool-card bg-alt">
+      <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-calculator"/></svg></div>
+      <div class="tool-title">Калькулятор КБЖУ</div>
+      <p class="tool-desc">Рассчитайте индивидуальную норму калорий, белков, жиров и углеводов. Учитываем цель, активность и особенности организма.</p>
+      <a href="pages/calculator.html" class="btn btn-primary">Рассчитать →</a>
+    </div>
+    <div class="tool-card dark">
+      <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-brain"/></svg></div>
+      <div class="tool-title">Тест на РПП</div>
+      <p class="tool-desc">Проверьте, как складываются ваши отношения с едой. Научно обоснованный скрининг с персональными рекомендациями.</p>
+      <a href="pages/test-rpp.html" class="btn btn-ghost-inv">Пройти тест →</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="footer" data-theme="dark">
+  <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">ONLYFIT</div>
-        <p class="footer-tagline">
-          Доказательный фитнес и нутрициология. Умный, эмпатичный наставник — без стыда, без обещаний чудес, с реальными результатами.
-        </p>
+        <p class="footer-tagline">Доказательный фитнес и нутрициология. Умный, эмпатичный наставник — без стыда, без обещаний чудес, с реальными результатами.</p>
         <div class="footer-social">
           <a href="#" title="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-telegram"/></svg></a>
           <a href="#" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-instagram"/></svg></a>
@@ -670,7 +628,7 @@
         <div class="footer-links">
           <a href="pages/calculator.html">Калькулятор КБЖУ</a>
           <a href="pages/test-rpp.html">Тест РПП</a>
-          <a href="pages/quiz.html">Квиз-онбординг</a>
+          <a href="pages/quiz.html">Квиз</a>
         </div>
       </div>
       <div>
